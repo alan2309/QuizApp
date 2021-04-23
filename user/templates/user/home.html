@@ -1,0 +1,27 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block header %}
+<link rel="stylesheet" href="{% static 'CSS/home.css' %}">
+<title>Online Quiz</title>
+{% endblock %}
+
+{% block content %}
+<div class="background">
+    <div id="layer">
+        <div class="row">
+            <div class="column" id="content">
+                <h1>ONLINE QUIZ</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, quis? Voluptatibus error, tempora nesciunt totam odio nemo nobis sunt minima, nam quisquam non quibusdam aspernatur quidem esse? Amet, delectus ipsum?</p>
+            <h1>ARE YOU A</h1>
+            <a href="{% url 'quiz-login' %}"><button type="button"class="btn-lg btn-outline-success buttons">TEACHER</button></a>
+            <a href="{% url 'quiz-login' %}"><button type="button"class="btn-lg btn-outline-success buttons">STUDENT</button></a>
+            </div>
+            <div class="column" id="image">
+                <section class="image">
+                    <img src="https://icon-library.com/images/exam-icon-png/exam-icon-png-24.jpg" height="50%" alt="online exam vector"/>
+                </section>
+            </div>
+        </div> 
+    </div>
+</div>
+{% endblock %}

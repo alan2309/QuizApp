@@ -1,0 +1,43 @@
+*
+{
+    color: azure;
+}
+html{
+    box-sizing: border-box;
+}
+body{
+    background-image: url("https://assets.telegraphindia.com/abped/2020/Sep/1600356116_5-things.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.background
+{
+    position:relative;
+}
+#layer
+{
+    background-color: teal;
+    position:absolute;
+    width: 100vw;
+    height: 100vh;
+    opacity:0.9;
+}
+.buttons
+{
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 2%;
+}
+#content
+{
+    float:left;
+    margin-top: 10%;
+    padding: 4%;
+    text-align: left;
+    width: 60%;
+}
+#image
+{
+    width: 40%;
+    margin-top: 15%;
+}

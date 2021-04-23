@@ -1,0 +1,26 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" href="{% static 'CSS/regi.css' %}">
+<title>Registration</title>
+{% endblock %}
+{% block content %}
+<div class="form-container">
+    <h3>Create your account now!</h3>
+    <p>It's free.</p>
+    <form action="{% url 'quiz-regi' %}" method="POST">
+        {% csrf_token %}
+        {% for message in messages %}
+<p style="color: red;">{{message}}</p>
+{% endfor %}
+       <input type="text" name="first_name" class="form-control" placeholder="First Name" required>
+       <input type="text" name="last_name" class="form-control" placeholder="Last Name" required>
+                <input type="email" name="email" class="form-control" placeholder="Email Address" required>
+                <input type="password" id="t1" name="password" class="form-control" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                <small>**Password should be more than 8 characters with one uppercase,one lowercase and one numeric character.</small>
+                <input type="submit" class = "submit" value="Register">
+                <p class="sign-in">Already have an account? <a href="{% url 'quiz-login' %}">Log in</a></p>
+    </form>
+</div>
+{% endblock %}
