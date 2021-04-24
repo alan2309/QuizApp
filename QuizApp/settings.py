@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'student.apps.StudentConfig',
     'user.apps.UserConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -120,4 +121,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 LOGIN_URL = 'quiz-login'
-LOGIN_REDIRECT_URL='quiz-index'
+LOGIN_REDIRECT_URL='student-home'

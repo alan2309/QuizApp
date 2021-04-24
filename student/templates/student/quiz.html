@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+ {% load static %} 
+ 
+ {% block header %}
+<title>QUIZ</title>
+<link rel="stylesheet" href="{% static 'CSS/quiz.css' %}" />
+{% endblock %} 
+
+{% block content%}
+<div class="left">
+  <div class="content">
+    <div class="container">
+      <div class="card">
+        <h3>General Instructions</h3>
+        <ol type="1">
+          <li>You have 15 seconds to answer each question.</li>
+          <li>You can not answer a question once timer goes off.</li>
+          <li>You will be given your score at the end of the quiz.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="right">
+  <div class="form-container">
+    <h3>FILL IN YOUR DETAILS.</h3>
+    <form action="{% url 'test-quiz' quiz_id%}" method="POST">
+      <input
+        type="text"
+        class="form-control"
+        name="name"
+        placeholder="STUDENT NAME"
+        required/>
+      <input
+        type="number"
+        class="form-control"
+        placeholder="STUDENT ID"
+        required
+        step="1"
+        min="1"
+        name="sap"
+        value=""/>
+        <button type="submit" class="submit">GO TO TEST</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

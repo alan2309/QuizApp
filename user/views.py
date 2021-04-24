@@ -14,7 +14,7 @@ def login(request):
         user = auth.authenticate(username = email,password = password)
         if user is not None:
             auth.login(request,user)
-            return redirect('quiz-index')
+            return redirect('student-home')
         else:
             messages.info(request,'**USER NOT FOUND**')  
             return redirect('quiz-login')
@@ -35,8 +35,8 @@ def register(request):
             user.save()
             return redirect('quiz-index')
     else:        
-        return render(request,'user/regi.html')        
-
-@login_required
-def index(request):
-    return HttpResponse("HOME PAGE")
+        return render(request,'user/regi.html')
+        
+def logout(request):
+    auth.logout(request)
+    return redirect('quiz-home')

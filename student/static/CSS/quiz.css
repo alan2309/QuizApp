@@ -1,0 +1,160 @@
+*
+{
+    color: black;
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+
+.left
+{
+    float:left;
+    width:50%;
+    background-color: teal;
+    height: 100vh;
+}
+.right
+{
+    float:right;
+    width:50%;
+    background-color: #f2f6ff;
+    height: 100vh; 
+}
+.left h1{
+    color: rgb(18, 65, 18);
+    font-weight: bold;
+}
+.left h1,h3{
+    text-align: center;
+}
+.left h3
+{
+    color:#f2f6ff;
+}
+.content
+{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    background:teal;
+    overflow:hidden;
+    padding:100px 20px;
+    box-sizing:border-box;
+}
+.content::before{
+    content:'';
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: #ef3b36;
+    clip-path: circle(25% at 0% 100%);
+}
+.content::after{
+    content:'';
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: #47aafa;
+    clip-path: circle(19% at 35% -5%);
+}
+.container .card{
+    position:relative;
+    width:500px;
+    height:400px;
+    margin: 20px 40px;
+    display:flex;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(15px);
+    text-align: center;
+    align-items: center;
+    font-weight: bold;
+}
+.container .card h3, .container .card ol{
+    transition: 0.5s ease-in-out;
+}
+.button{
+    margin:40%;
+    width:35%;
+    margin-left:35%;
+}
+
+.form-container
+{
+    width: 400px;
+    text-align: center;
+    padding: 50px;
+    margin: 22%;
+    border-radius: 5px;
+    background: #f2f6ff;
+    box-shadow:  32px 32px 65px #ffffffd2, -32px -32px 65px #0000002f;
+}
+.form-container h3{
+    font-size: 28px;
+    font-weight: 800;
+    margin: 15px 0;
+}
+.form-container p
+{
+    margin: 0 0 40px 0;
+    font-size: 12px;
+}
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="password"],
+.form-container input[type="number"]
+{
+    width:330px;
+    height:40px;
+    margin:8px 0;
+    padding:20px;
+    background-color: #f2f6ff;
+    box-shadow: inset -4px -4px 4px #ffffffd2, inset 4px 4px 4px #0000002f;
+}
+::placeholder
+{
+    color: teal; 
+}
+h3,p
+{
+    color: teal;
+}
+.form-container .submit {
+    width:230px;
+    height:40px;
+    margin:20 px 0;
+    padding:0;
+    color:white;
+    background: linear-gradient(to right, rgb(24, 56, 24),teal);
+    cursor:pointer;
+    position:relative;
+    transition: all 0.5s;
+    overflow:hidden;
+    margin-top: 5%;
+}
+.form-container .submit::after
+{
+    content:"";
+    position:absolute;
+    left:-20px;
+    top:-20px;
+    left:0;
+    width:10px;
+    height:80px;
+    background-color: rgb(96, 163, 96);
+    transform: rotate(30deg);
+    filter:blur(10px);
+    opacity:0.5;
+    transition:0.5 ease-out;
+}
+.form-container .submit:hover::after{
+    transform:translateX(270px) rotate(30deg);
+
+}
