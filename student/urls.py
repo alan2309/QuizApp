@@ -8,4 +8,5 @@ urlpatterns = [
     path('logout/',userViews.logout,name='student-logout'),
     path('quiz/<int:quiz_id>/',views.quiz,name='enter-quiz'),
     path('test/<int:quiz_id>/',views.test,name='test-quiz'),
+    path('results/<int:quiz_id>/',views.results,name='result-quiz'),
 ]

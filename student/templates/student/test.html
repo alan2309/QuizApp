@@ -11,14 +11,14 @@
     <h3><i class="fas fa-tachometer-alt"></i> TIME LEFT</h3></nav>
  
     <div id="quiz">
-        <form action="{% url '' quiz_id %}" method="POST">
+        <form action="{% url 'result-quiz' quiz_id %}" method="POST">
           {% csrf_token %}
-          {% for question in questions_list%}
+          {% for question in questions_list %}
             <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">{{question.question_text}}</h5>
                   <p class="card-text">
-                    {% for choice in question.choices.all %}
+                    {% for choice in question.choice_set.all %}
                     <div class="radio">
                       <label> <input type="radio" name="{{question.question_text}}"  value="{{choice.ans}}">{{choice.choice_text}}</label>
                     </div>
@@ -28,8 +28,9 @@
               </div>
               {% endfor %}
               <button type="submit" class="btn-lg btn-success bt" id="btn">SUBMIT</button>
-  </form></div>
-  <div class="result" id="res">
+  </form>
+</div>
+  <!-- <div class="result" id="res">
     <div class="card">
         <div class="card-body">
           <h5 class="card-title">Your test response had been submitted successfully.</h5>
@@ -39,6 +40,6 @@
         </div>
       </div>
   </div>
-    <script src="{% static 'js/test.js' %}" ></script>
-</body>
+     <script src="{% static 'js/test.js' %}" ></script> -->
+   
 {% endblock %} 

@@ -33,7 +33,7 @@ def register(request):
         else:
             user = User.objects.create_user(username = email,password = password,email = email,first_name = first_name,last_name = last_name)
             user.save()
-            return redirect('quiz-index')
+            return redirect('student-home')
     else:        
         return render(request,'user/regi.html')
         

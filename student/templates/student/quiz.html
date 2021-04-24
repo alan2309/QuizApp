@@ -25,6 +25,7 @@
   <div class="form-container">
     <h3>FILL IN YOUR DETAILS.</h3>
     <form action="{% url 'test-quiz' quiz_id%}" method="POST">
+      {% csrf_token %}
       <input
         type="text"
         class="form-control"
