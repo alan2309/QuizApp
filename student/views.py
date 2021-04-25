@@ -43,5 +43,11 @@ def results(request,quiz_id):
 
     return render(request,'student/results.html',{'result':results,'sap':request.POST['sap'],'total':total})
 
+@login_required
 def adminDash(request):
-    return render(request,'student/admin_dash.html')    
+    return render(request,'student/admin_dash.html',{'quizzes':Quiz.objects.all()})    
+
+def records(request,quiz_id):
+    quiz = Quiz.objects.get(id=quiz_id)
+    records = quiz.result_set.all()
+    return render(request,'student/records.html',{'quiz_id':quiz_id,'records':records})    
