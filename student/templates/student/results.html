@@ -2,8 +2,22 @@
  {% load static %} 
  
  {% block header %}
+ <link rel="stylesheet" href="{% static 'CSS/test.css' %}">
  {% endblock %} 
  {% block content%}
- <h1>{{sap}}</h1>
+ <nav class="navbar navbar-light navbar-right" style="background-color: teal;">
+    <h3><i class="fas fa-tachometer-alt"></i> STUDENT RESULTS</h3>
+    <a href="{% url 'student-logout' %}"><button type="button" class="btn-lg btn-danger" id="btn">SIGN OUT</button></a>
+  </nav>
+ <div class="result" id="res">
+    <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Your test response had been submitted successfully.</h5>
+          <p class="card-text">
+           You have scored  <b>{{sap}}</b> in the test!
+          </p>
+        </div>
+      </div>
+  </div> 
 
  {% endblock %}

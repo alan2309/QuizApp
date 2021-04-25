@@ -4,11 +4,12 @@
 {% block header %}
 <title>ONLINE EXAM</title>
     <link rel="stylesheet" href="{% static 'CSS/test.css' %}">
+    <!--<script src="{% static 'js/timer.js' %}" ></script>-->
 {% endblock %} 
 
 {% block content%}
 <nav class="navbar navbar-light navbar-right" style="background-color: teal;">
-    <h3><i class="fas fa-tachometer-alt"></i> TIME LEFT</h3></nav>
+    <h3><span id="countdown">60:00</span> TIME LEFT</h3></nav>
  
     <div id="quiz">
         <form action="{% url 'result-quiz' quiz_id %}" method="POST">
@@ -33,16 +34,5 @@
               <button type="submit" class="btn-lg btn-success bt" id="btn">SUBMIT</button>
   </form>
 </div>
-  <!-- <div class="result" id="res">
-    <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Your test response had been submitted successfully.</h5>
-          <p class="card-text">
-           You have scored 2/4 in the test!
-          </p>
-        </div>
-      </div>
-  </div>
-     <script src="{% static 'js/test.js' %}" ></script> -->
    
 {% endblock %}
