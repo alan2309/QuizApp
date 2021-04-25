@@ -45,3 +45,12 @@ background: #FFFFFF;
     background: teal;
     color: white;
 }
+#countdown{
+    background-color: 	#d9534f;
+    padding:0.5%;
+    margin-left:2%;
+    border-radius: 0.5rem;
+}
+.closed{
+    display:none;
+}

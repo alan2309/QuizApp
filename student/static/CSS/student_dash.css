@@ -6,13 +6,13 @@ nav
   height:10vh;
 }
 nav h3{
-  color:white;
-  padding-left: 2%;
+    color:white;
+    padding-left: 2%;
 }
 @import url("https://fonts.googleapis.com/css?family=Poppins&display=swap");
 
 html {
-font-size: 62.5%;
+  font-size: 62.5%;
 }
 body .grid{
   margin:0 auto;
@@ -28,6 +28,12 @@ font-family: sans-serif;
 font-weight: 800;
 font-size: 1.5rem;
 }
+.card-content p{
+  color:teal;
+  font-family: sans-serif;
+  font-weight: 800;
+  font-size: 1.5rem;
+}
 .grid {
 display: grid;
 width: 114em;
@@ -37,12 +43,12 @@ align-items: start;
 }
 
 .grid-item {
-background-color: #fff;
-border-radius: 0.4rem;
-overflow: hidden;
-box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
-cursor: pointer;
-transition: translateY(-0.5%) 3s ease-in-out 1s;
+  background-color: #fff;
+  border-radius: 0.4rem;
+  overflow: hidden;
+  box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: translateY(-0.5%) 3s ease-in-out 1s;
 }
 
 .grid-item:hover {
@@ -62,10 +68,10 @@ padding: 3rem;
 }
 
 .card-header {
-font-size: 3rem;
-font-weight: 800;
-color: teal;
-margin-bottom: 1.5rem;
+  font-size: 3rem;
+  font-weight: 800;
+  color: teal;
+  margin-bottom: 1.5rem;
 }
 
 .card-text {
