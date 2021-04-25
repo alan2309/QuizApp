@@ -1,14 +1,5 @@
-var submit_btn=document.getElementById('btn');
-submit_btn.onclick=()=>{
-    var x=document.getElementById('quiz');
-    x.style.display="none";
-    var y=document.getElementById('res');
-    y.style.display="block";
-}
-
-//timer js
-
-const startingMinutes=0.5;
+//timer
+const startingMinutes=30;
 let time=startingMinutes*60;
 
 const countdownEl=document.getElementById('countdown');
@@ -25,5 +16,9 @@ if(time<=0){
     clearInterval(time=0)
     const q=document.getElementById('quiz');
     q.style.display="none";
+    const timer=document.getElementById('countdown');
+    timer.style.display="none";
+    const closed=document.getElementById('cl');
+    closed.style.display="block";
 }
 }
