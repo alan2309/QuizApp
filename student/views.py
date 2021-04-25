@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse 
 from django.contrib.auth.decorators import login_required
-from .models import Quiz,Question
+from .models import Quiz,Question,Result
 from datetime import datetime
 
 @login_required
@@ -34,7 +34,10 @@ def results(request,quiz_id):
         x = request.POST[question.question_text]
         
         if  x == "True":
-            print(request.POST[question.question_text])
             results+=1
+    
+    x=quiz.result_set.create(student_email=request.POST['email'],student_marks=str(results),student_name=request.POST['name'],student_sap=request.POST['sap'],quiz=quiz_id,total_marks=str(total))
+    x.save()
+    
 
-    return render(request,'student/results.html',{'result':results,'total':total})   
+    return render(request,'student/results.html',{'result':results,'sap':request.POST['sap'],'total':total})

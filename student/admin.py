@@ -1,5 +1,5 @@
 from django.contrib import admin
-from student.models import Quiz,Question,Choice
+from student.models import Quiz,Question,Choice,Result
 
 # Register your models here.
 class QuizAdmin(admin.ModelAdmin):
@@ -9,3 +9,4 @@ class QuizAdmin(admin.ModelAdmin):
 admin.site.register(Quiz,QuizAdmin)
 admin.site.register(Question)
 admin.site.register(Choice)
+admin.site.register(Result)
