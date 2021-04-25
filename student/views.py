@@ -41,3 +41,6 @@ def results(request,quiz_id):
     
 
     return render(request,'student/results.html',{'result':results,'sap':request.POST['sap'],'total':total})
+
+def adminDash(request):
+    return render(request,'student/admin_dash.html')    
