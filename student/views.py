@@ -31,14 +31,15 @@ def results(request,quiz_id):
     results=0
     total=questions.count()
     for question in questions:
-        x = request.POST[question.question_text]
-        
-        if  x == "True":
-            results+=1
-    
+        try:
+            x = request.POST[question.question_text] 
+            if  x == "True":
+                results+=1
+        except:
+            pass
+   
     x=quiz.result_set.create(student_email=request.POST['email'],student_marks=str(results),student_name=request.POST['name'],student_sap=request.POST['sap'],quiz=quiz_id,total_marks=str(total))
     x.save()
-    
 
     return render(request,'student/results.html',{'result':results,'sap':request.POST['sap'],'total':total})
 

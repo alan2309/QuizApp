@@ -11,7 +11,7 @@
     <h3 id="countdown"></h3><h3 style="margin-right: 2%;">ONLINE EXAM</h3></nav>
    
     <div id="quiz">
-        <form action="{% url 'result-quiz' quiz_id %}" method="POST">
+        <form action="{% url 'result-quiz' quiz_id %}" name="myForm" method="POST">
           {% csrf_token %}
           <input type="hidden" value="{{sap}}" name="sap"> 
           <input type="hidden" value="{{user.email}}" name="email"> 
