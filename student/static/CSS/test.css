@@ -7,13 +7,10 @@
 nav 
 {
     height:10vh;
-    
 }
 nav h3{
+    padding-left:1%;
     color:white;
-}
-#quiz{
-    background-color: #e0e0e0;
 }
 #quiz form{
     align-items: center;
@@ -21,17 +18,25 @@ nav h3{
 .card{
     width:80%;
     margin:0.5%;
-    margin-left: 10%;
-    border-radius: 15px;
-    background: #e0e0e0;
-    box-shadow:  20px 20px 60px #bebebe,
-             -20px -20px 60px #ffffff
+    margin-left: 8%;
+    -webkit-box-shadow: 4px 4px 12px -4px rgba(191,191,191,0.89); 
+box-shadow: 4px 4px 12px -4px rgba(191,191,191,0.89);
+background: #FFFFFF;
 }
+
 .radio{
-    margin:1%;
+    margin:1.5%;
+    font-weight: 500;
+    color: rgb(39, 138, 138);
+}
+.radio:hover{
+    background-color: rgba(255,255,255,0.05);
+    color:teal;
+    font-weight: 800;
+    font-size: large;
+    cursor: pointer;
 }
 .bt{
-    padding:4%;
     margin-left:45%;
     margin-bottom:1%;
 }
@@ -39,7 +44,4 @@ nav h3{
     padding:1%;
     background: teal;
     color: white;
-}
-.result{
-    display:none;
 }
