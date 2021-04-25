@@ -36,7 +36,7 @@ def register(request):
             return redirect('quiz-regi') 
         else:
             user = User.objects.create_user(username = email,password = password,email = email,first_name = first_name,last_name = last_name)
-            if request.POST['user'] == 'Student' :
+            if request.POST['user'] == 'student' :
                  user.save()
             else:
                 if request.POST['teacher-code']== "ABCD":

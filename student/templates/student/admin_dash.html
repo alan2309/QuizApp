@@ -6,6 +6,8 @@
 <link rel="stylesheet" href="{% static 'CSS/admin_dash.css' %}">
 {% endblock %}
 {% block content %}
+
+{% if user.is_staff %}
 <nav class="navbar navbar-light navbar-right" style="background-color: teal;">
   <h3><i class="fas fa-tachometer-alt"></i> ADMIN DASHBOARD</h3>
     <a href="{% url 'student-logout' %}"><button type="button" class="btn-lg btn-danger btn">SIGN OUT</button></a>
@@ -56,5 +58,10 @@
     </div>
     {% endfor %}
 </div>
+{% else %}
+<script>
+window.location.replace("{% url 'student-home' %}");
+</script>
+{% endif %}
 <script src="{% static 'js/admin_dash.js' %}"></script>
 {% endblock %}
