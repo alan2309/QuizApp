@@ -14,6 +14,11 @@
         {% for message in messages %}
 <p style="color: red;">{{message}}</p>
 {% endfor %}
+<label for="User">User type :</label>
+<label> <input type="radio" name="user" id="teacher" value="teacher" onclick="Teacher()" required>teacher</label>
+<label><input type="radio" name="user" id="student" value="student" onclick="Student()" required>student</label>
+<input type="text" name="teacher-code" class="form-control" placeholder="Teacher Code" required id="teacher-code" hidden=true>
+
        <input type="text" name="first_name" class="form-control" placeholder="First Name" required>
        <input type="text" name="last_name" class="form-control" placeholder="Last Name" required>
                 <input type="email" name="email" class="form-control" placeholder="Email Address" required>
@@ -23,4 +28,6 @@
                 <p class="sign-in">Already have an account? <a href="{% url 'quiz-login' %}">Log in</a></p>
     </form>
 </div>
+
+<script src="{% static 'js/regi.js' %}" ></script> 
 {% endblock %}

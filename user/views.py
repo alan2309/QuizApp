@@ -11,10 +11,14 @@ def login(request):
      if(request.method == 'POST'):
         email = request.POST['email']
         password = request.POST['password']
+        
         user = auth.authenticate(username = email,password = password)
         if user is not None:
             auth.login(request,user)
-            return redirect('student-home')
+            if User.objects.get(username=email).is_staff ==True:
+                return HttpResponse("TeachersSide")
+            else :
+                return redirect('student-home')     
         else:
             messages.info(request,'**USER NOT FOUND**')  
             return redirect('quiz-login')
@@ -32,7 +36,17 @@ def register(request):
             return redirect('quiz-regi') 
         else:
             user = User.objects.create_user(username = email,password = password,email = email,first_name = first_name,last_name = last_name)
-            user.save()
+            if request.POST['user'] == 'Student' :
+                 user.save()
+            else:
+                if request.POST['teacher-code']== "ABCD":
+                    user.is_staff= True
+                    user.save()
+                else:
+                    messages.info(request,'**Code INCORRECT**')
+                    return redirect('quiz-regi')
+
+
             return redirect('student-home')
     else:        
         return render(request,'user/regi.html')
