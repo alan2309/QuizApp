@@ -1,5 +1,5 @@
 //timer
-const startingMinutes=30;
+const startingMinutes=0.1;
 let time=startingMinutes*60;
 
 const countdownEl=document.getElementById('countdown');
@@ -13,12 +13,6 @@ seconds=seconds<10? '0' + seconds : seconds;
 countdownEl.innerHTML= `${minutes}: ${seconds}`;
 time--;
 if(time<=0){
-    clearInterval(time=0)
-    const q=document.getElementById('quiz');
-    q.style.display="none";
-    const timer=document.getElementById('countdown');
-    timer.style.display="none";
-    const closed=document.getElementById('cl');
-    closed.style.display="block";
+    document.forms["myForm"].submit();
 }
 }
