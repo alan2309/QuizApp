@@ -3,7 +3,7 @@ var intervalID = 0;
 window.onload = fadeIn;
 
 function fadeIn() {
-    setInterval(show, 100);
+    setInterval(show, 50);
 }
 
 function show() {
