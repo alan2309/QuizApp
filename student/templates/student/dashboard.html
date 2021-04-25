@@ -4,22 +4,23 @@
 {% block header %}
 <title>STUDENT DASHBOARD</title>
 <link rel="stylesheet" href="{% static 'CSS/student_dash.css' %}">
+<script src="{% static 'js/transition.js' %}" ></script> 
 {% endblock %}
 
 {% block content%}
 <nav class="navbar navbar-light navbar-right" style="background-color: teal;">
     <h3><i class="fas fa-tachometer-alt"></i> STUDENT DASHBOARD</h3>
-    <a href="{% url 'student-logout' %}"><button type="button" class="btn-lg btn-danger btn">SIGN OUT</button></a>
+    <a href="{% url 'student-logout' %}"><button type="button" class="btn-lg btn-danger" id="btn">SIGN OUT</button></a>
   </nav>
 
   <div class="grid">
     {% for quiz in quizzes%}
-            <div class="grid-item">
+            <div class="grid-item" id="card" style="opacity: 0;">
               <div class="card">
                 <img class="card-img" src="https://assets.goodfirms.co/blog/general/1566798061-exam-online.jpg" />
                 <div class="card-content">
                   <h1 class="card-header">{{quiz.quiz_subject}}</h1>
-                  <p>{{quiz.quiz_name}}..............Ends ON-{{quiz.quiz_end}}</p>
+                  <p>EXAM TYPE: {{quiz.quiz_name}}<br/>QUIZ CLOSES ON: <b>{{quiz.quiz_end}}</b></p>
                   <a href="{% url 'enter-quiz' quiz.id%}"><button class="card-btn">TAKE A QUIZ <span>&rarr;</span></button></a>
                 </div>
               </div>
