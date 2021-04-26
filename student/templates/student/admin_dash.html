@@ -59,7 +59,7 @@ window.location.replace("{% url 'student-home' %}");
         <a class="card1" href="{% url 'student-records' quiz.id%}">
           <h3>{{quiz.quiz_subject}}</h3>
           <p class="small">TEST DATE: {{quiz.quiz_end}}<br/>
-          EXAM TYPE: {{quiz.quiz_name}}<br/> <b><i>TIME DURATION: 60mins</i></b></p>
+          EXAM TYPE: {{quiz.quiz_name}}<br/> <b><i>TIME DURATION: {{quiz.quiz_time}}mins</i></b></p>
         </a>
     </div>
     {% endfor %}
