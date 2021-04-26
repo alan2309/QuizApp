@@ -22,37 +22,14 @@ window.location.replace("{% url 'student-home' %}");
   <div class="left_menu">
     <div class="btn-group-vertical" role="group" >
       <button type="button" id="dash_btn" class="btn-lg btn-danger bt">DASHBOARD</button>
-        <button type="button" id="create" class="btn-lg btn-danger bt">CREATE A QUIZ</button>
+       <a href="{% url 'quizlist' %}"> <button type="button" id="create" class="btn-lg btn-danger bt">CREATE A QUIZ</button></a>
         <button type="button" id="show" class="btn-lg btn-danger bt">Quizzes</button>
     </div>
 </div>
 
 <div class="dash" id="dashboard">  
 </div>
-<div class="content" id="edit">
-    <form>
-        <div class="form-group">
-          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="+ ADD COURSE NAME" required>
-        </div>
-        <div class="form-group">
-          <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="+ ADD QUESTION" >
-        </div>
-        <div class="form-group">
-            <input type="text" class="form-control" id="formGroupExampleInput3" placeholder="+ ADD OPTION 1" >
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" id="formGroupExampleInput4" placeholder="+ ADD OPTION 2" >
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" id="formGroupExampleInput5" placeholder="+ ADD OPTION 3">
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" id="formGroupExampleInput6" placeholder="+ ADD OPTION 4">
-          </div><br/>
-          <button type="button" id="butt" class="btn-lg btn-success ">ADD</button>
-          <button type="button" id="butt" class="btn-lg btn-danger ">DELETE</button>
-      </form>   
-</div>
+
 <div class="records" id="rec">
   {% for quiz in quizzes%}
     <div class="container-fluid">
@@ -64,5 +41,10 @@ window.location.replace("{% url 'student-home' %}");
     </div>
     {% endfor %}
 </div>
+
+
 <script src="{% static 'js/admin_dash.js' %}"></script>
+
+
 {% endblock %}
+

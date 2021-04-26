@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content%}
+<h1>List of quizs</h1>
+<ol>
+    {% for quiz in quizs %}
+   <a href="{% url 'quizdetail' quiz.id %}"> <h2><li>{{quiz.quiz_name}}</li></h2></a>
+  
+    {% endfor %}
+</ol>
+<a href="{% url 'quizcreate' %}"><button class="btn btn-primary">Add quiz</button></a>
+
+{% endblock %}
+
