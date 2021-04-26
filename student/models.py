@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
 import datetime
+from django.urls import reverse
+
 
 
 class Quiz(models.Model):
@@ -12,6 +14,10 @@ class Quiz(models.Model):
 
     def __str__(self):
         return self.quiz_subject
+    def get_absolute_url(self):
+        return reverse('quizdetail',kwargs={'pk':self.pk})
+    
+
 
 class Question(models.Model):
     quiz=models.ForeignKey(Quiz, on_delete=models.CASCADE)
@@ -19,6 +25,8 @@ class Question(models.Model):
 
     def __str__(self):
         return self.question_text
+    def get_absolute_url(self):
+        return reverse('quizdetail',kwargs={'pk':self.pk})
 
 class Choice(models.Model):
     question=models.ForeignKey(Question, on_delete=models.CASCADE)
@@ -26,7 +34,10 @@ class Choice(models.Model):
     ans = models.BooleanField(default = False)
 
     def __str__(self):
-        return self.choice_text        
+        return self.choice_text
+
+    def get_absolute_url(self):
+        return reverse("choiceadd", kwargs={'pk': self.pk,'p':self.pk})         
 
 class Result(models.Model):
     quiz=models.ForeignKey(Quiz, on_delete=models.CASCADE)

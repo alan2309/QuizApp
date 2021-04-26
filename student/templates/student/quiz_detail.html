@@ -1,0 +1,28 @@
+{% extends "base.html"%}
+{% block content%}
+    <h1>Welsome to Quiz Detail Page !</h1>
+    <h2><li>Subject : {{quiz_detail.quiz_name}}</li></h2>
+    <h3>Questions:</h3>
+    <ol>
+    {% for question in quiz_detail.question_set.all %}
+        <hr>
+        <li>    
+            <a href="#">{{question.question_text}}</a></li>
+    {% for ans in question.choice_set.all %}
+    <ul>
+        <li>   
+            <p><a href="#">{{ans.choice_text}}</a> : value ---> {{ans.ans}}</p>     
+        </li>
+    </ul>
+    {% endfor %}
+    <a type='muted' href="{% url 'choiceadd' pk=quiz_detail.pk p=question.id %}">add Values of Choices ??</a>
+   <hr>
+    {% endfor %}
+</ol>
+</div>
+<div >
+ 
+    <a  href="{% url 'quizdelete' pk=quiz_detail.pk %}"> <button class="btn btn-danger">Delete Quiz</button></a>
+    <a  href="{% url 'questionadd' pk=quiz_detail.pk %}"> <button class="btn btn-danger">Add Questions</button></a>
+</div>
+{% endblock %}

@@ -1,8 +1,51 @@
 from django.shortcuts import render
 from django.http import HttpResponse 
 from django.contrib.auth.decorators import login_required
-from .models import Quiz,Question,Result
+from .models import Quiz,Question,Result,Choice
 from datetime import datetime
+from django.views.generic import (View,TemplateView,
+                                  ListView,DetailView,
+                                  CreateView,UpdateView,DeleteView)
+from django.urls import reverse_lazy
+from django.contrib import messages
+
+
+
+class QuizListView(ListView):
+    context_object_name='quizs'
+    model=Quiz
+    template_name='student/listquiz.html'
+
+class QuizCreateView(CreateView):
+    fields=('quiz_subject','quiz_name','quiz_end','quiz_time')
+    model=Quiz
+    template_name='student/quizadd.html'
+    
+    success_url=reverse_lazy('quizlist')
+
+
+class QuizDetailView(DetailView):
+    context_object_name='quiz_detail'
+    model=Quiz
+    template_name='student/quiz_detail.html'
+    success_url=reverse_lazy('quizlist')
+
+    
+class QuestionCreateView(CreateView):
+    fields=('quiz','question_text')
+    model=Question
+    template_name='student/quizadd.html'
+
+class QuizDeleteView(DeleteView):
+    model=Quiz
+    template_name='student/quiz_confirm_delete.html'
+    success_url=reverse_lazy('quizlist') 
+
+class ChoiceCreateView(CreateView):
+    fields=('question','choice_text','ans')
+    model=Choice
+    template_name='student/quizadd.html'
+
 
 @login_required
 def dashboard(request):
