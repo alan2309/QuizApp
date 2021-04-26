@@ -24,9 +24,9 @@ class Question(models.Model):
     question_text = models.CharField(max_length=400)
 
     def __str__(self):
-        return self.question_text
+        return self.question_text 
     def get_absolute_url(self):
-        return reverse('quizdetail',kwargs={'pk':self.pk})
+        return reverse('quizdetail',kwargs={'pk':self.quiz.pk})
 
 class Choice(models.Model):
     question=models.ForeignKey(Question, on_delete=models.CASCADE)
@@ -35,9 +35,8 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.choice_text
-
     def get_absolute_url(self):
-        return reverse("choiceadd", kwargs={'pk': self.pk,'p':self.pk})         
+        return reverse('quizdetail',kwargs={'pk':self.question.quiz.pk})        
 
 class Result(models.Model):
     quiz=models.ForeignKey(Quiz, on_delete=models.CASCADE)
