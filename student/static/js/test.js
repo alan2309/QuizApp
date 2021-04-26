@@ -1,8 +1,7 @@
 //timer
-const startingMinutes=0.1;
-let time=startingMinutes*60;
-
 const countdownEl=document.getElementById('countdown');
+const startingMinutes=countdownEl.innerHTML;
+let time=startingMinutes*60;
 
 setInterval(updateCountdown,1000);
 
@@ -12,7 +11,7 @@ let seconds=time%60;
 seconds=seconds<10? '0' + seconds : seconds;
 countdownEl.innerHTML= `${minutes}: ${seconds}`;
 time--;
-if(time<=0){
+if(time == 0){
     document.forms["myForm"].submit();
 }
 }

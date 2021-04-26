@@ -12,6 +12,6 @@ function updateCountdown() {
     countdownEl.innerHTML= `${minutes}: ${seconds}`;
     time--;
     if(time<=0){
-        clearInterval(time=0)
+        document.forms['myForm'].submit();
     }
 }

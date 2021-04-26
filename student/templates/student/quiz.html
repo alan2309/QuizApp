@@ -13,7 +13,7 @@
       <div class="card">
         <h3>General Instructions</h3>
         <ol type="1">
-          <li>You have 15 seconds to answer each question.</li>
+          <li>You have {{time}} minutes to answer each question.</li>
           <li>You can not answer a question once timer goes off.</li>
           <li>You will be given your score at the end of the quiz.</li>
         </ol>
@@ -41,6 +41,8 @@
         min="1"
         name="sap"
         value=""/>
+        <input type="number" name="time" id="time" value="{{time}}" hidden>
+        <input type="email" name="email" id="email" value="{{user.email}}" hidden>
         <button type="submit" class="submit">GO TO TEST</button>
     </form>
   </div>

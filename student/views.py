@@ -9,16 +9,23 @@ def dashboard(request):
     return render(request,'student/dashboard.html',{'quizzes':Quiz.objects.all()})
 
 def quiz(request,quiz_id):
-    return render(request,'student/quiz.html',{'quiz_id':quiz_id})    
+    quiz = Quiz.objects.get(id = quiz_id)
+    if quiz.result_set.filter(student_email = request.POST['email']).exists():
+        return render(request,'student/student-result.html',{
+            'result': quiz.result_set.get(student_email = request.POST['email'] )
+            })
+    else:        
+        return render(request,'student/quiz.html',{'quiz_id':quiz_id,'time':float(quiz.quiz_time)})    
 
 def test(request,quiz_id):
     name = request.POST['name']
     sap = request.POST['sap']
+    time = request.POST['time']
     quiz = Quiz.objects.get(id=quiz_id)
     questions_list = quiz.question_set.all()
-    
 
     return render(request,'student/test.html',{
+        'time':time,
         'sap':sap,
         'name':name,
         'questions_list':questions_list,

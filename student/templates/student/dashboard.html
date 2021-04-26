@@ -21,7 +21,12 @@
                 <div class="card-content">
                   <h1 class="card-header">{{quiz.quiz_subject}}</h1>
                   <p>EXAM TYPE: {{quiz.quiz_name}}<br/>QUIZ CLOSES ON: <b>{{quiz.quiz_end}}</b></p>
-                  <a href="{% url 'enter-quiz' quiz.id%}"><button class="card-btn">TAKE A QUIZ <span>&rarr;</span></button></a>
+                  <form action="{% url 'enter-quiz' quiz.id%}" method="post">
+                    {% csrf_token %}
+                    <input type="email" name="email" id="email" value="{{user.email}}" hidden>
+                    <button type="submit" class="card-btn" >TAKE A QUIZ<span>&rarr;</span></button>
+                </form>
+                  <!-- <a href="{% url 'enter-quiz' quiz.id%}"><button class="card-btn">TAKE A QUIZ <span>&rarr;</span></button></a> -->
                 </div>
               </div>
             </div>

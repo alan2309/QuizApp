@@ -8,7 +8,7 @@
 
 {% block content%}
 <nav class="navbar navbar-light navbar-right" style="background-color: teal;">
-    <h3 id="countdown"></h3><h3 style="margin-right: 2%;">ONLINE EXAM</h3></nav>
+    <h3 id="countdown">{{time}}</h3><h3 style="margin-right: 2%;">ONLINE EXAM</h3></nav>
    
     <div id="quiz">
         <form action="{% url 'result-quiz' quiz_id %}" name="myForm" method="POST">
@@ -32,7 +32,7 @@
               {% endfor %}
               <button type="submit" class="btn-lg btn-success bt" id="btn">SUBMIT</button>
   </form>
-</div>
+<!-- </div>
    <div class="closed" id="cl">
     <div class="card">
         <div class="card-body">
@@ -42,6 +42,6 @@
           </p>
         </div>
       </div>
-  </div>
+  </div> -->
     <script src="{% static 'js/test.js' %}" ></script> 
 {% endblock %}
