@@ -20,7 +20,7 @@
                 <img class="card-img" src="https://assets.goodfirms.co/blog/general/1566798061-exam-online.jpg" />
                 <div class="card-content">
                   <h1 class="card-header">{{quiz.quiz_subject}}</h1>
-                  <p>EXAM TYPE: {{quiz.quiz_name}}<br/>QUIZ CLOSES ON: <b>{{quiz.quiz_end}}</b></p>
+                  <p>EXAM TYPE: {{quiz.quiz_name}}<br/>QUIZ CLOSES ON: <b>{{quiz.quiz_end}}</b><br>DURATION: <b>{{quiz.quiz_time}}mins</b></p>
                   <form action="{% url 'enter-quiz' quiz.id%}" method="post">
                     {% csrf_token %}
                     <input type="email" name="email" id="email" value="{{user.email}}" hidden>
