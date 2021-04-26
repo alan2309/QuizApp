@@ -6,16 +6,25 @@ from datetime import datetime
 
 @login_required
 def dashboard(request):
-    return render(request,'student/dashboard.html',{'quizzes':Quiz.objects.all()})
+    open_quizzes = Quiz.objects.filter(quiz_end__gte = datetime.now().date())
+    closed_quizzes  = Quiz.objects.filter(quiz_end__lt = datetime.now().date())
+    return render(request,'student/dashboard.html',{'open_quizzes':open_quizzes,'closed_quizzes':closed_quizzes})
 
 def quiz(request,quiz_id):
     quiz = Quiz.objects.get(id = quiz_id)
     if quiz.result_set.filter(student_email = request.POST['email']).exists():
         return render(request,'student/student-result.html',{
-            'result': quiz.result_set.get(student_email = request.POST['email'] )
+            'result': quiz.result_set.get(student_email = request.POST['email']).student_marks,
+            'total': quiz.result_set.get(student_email = request.POST['email']).total_marks,
             })
-    else:        
-        return render(request,'student/quiz.html',{'quiz_id':quiz_id,'time':float(quiz.quiz_time)})    
+    else: 
+        if request.POST['status'] == "closed":
+            return render(request,'student/student-result.html',{
+            'result': -1,
+            'total': 0,
+            })
+        else:    
+            return render(request,'student/quiz.html',{'quiz_id':quiz_id,'time':float(quiz.quiz_time)})    
 
 def test(request,quiz_id):
     name = request.POST['name']

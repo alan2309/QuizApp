@@ -9,12 +9,21 @@
     <h3><i class="fas fa-tachometer-alt"></i> RESULTS</h3>
     <a href="{% url 'student-logout' %}"><button type="button" class="btn-lg btn-danger" id="btn">SIGN OUT</button></a>
   </nav>
+  
  <div class="result" id="res">
     <div class="card">
         <div class="card-body">
+          {% if result == -1 %}
+          <h5 class="card-title">You Have NOT Attempted The Quiz</h5>
+          {% else %}
           <h5 class="card-title">You Have Already Attempted The Quiz</h5>
+          {% endif %}
           <p class="card-text">
-           You have scored  <b>{{result.student_marks}}/{{result.total_marks}}</b> in the test!
+            {% if result == -1 %}
+           You have scored  <b>0</b> in the test!
+           {% else %}
+           You have scored  <b>{{result}}/{{total}}</b> in the test!
+           {% endif %}
           </p>
         </div>
         <div class="card-footer">
@@ -22,11 +31,6 @@
             <button class="submit btn btn-outline-danger">BACK TO HOME <PAGE></PAGE></button>
           </a>
         </div>
-        
       </div>
-     
   </div> 
- 
-  
-
  {% endblock %}
