@@ -2,10 +2,17 @@
 {% load static %}
 
 {% block header %}
+{% if user.is_staff %}
 <title>ADMIN DASHBOARD</title>
 <link rel="stylesheet" href="{% static 'CSS/records.css' %}">
+{% else %}
+<script>
+window.location.replace("{% url 'student-home' %}");
+</script>
+{% endif %}
 {% endblock %}
 {% block content %}
+
 <nav class="navbar navbar-light navbar-right" style="background-color: teal;">
     <a href="{% url 'admin-dash' %}"><button type="button" class="btn-lg btn-danger btn">BACK TO ADMIN DASHBOARD</button></a>
     <a href="{% url 'student-logout' %}"><button type="button" class="btn-lg btn-danger btn">SIGN OUT</button></a>
@@ -29,4 +36,9 @@
 {% endfor %}
                 </tbody>
               </table>
+{% else %}
+<script>
+window.location.replace("{% url 'student-home' %}");
+</script>
+{% endif %}
 {% endblock %}
