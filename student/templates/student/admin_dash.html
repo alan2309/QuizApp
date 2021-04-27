@@ -3,16 +3,126 @@
 
 {% block header %}
 {% if user.is_staff %}
-<title>ADMIN DASHBOARD</title>
+<title>ADMIN DASHBOARDdd</title>
 <link rel="stylesheet" href="{% static 'CSS/admin_dash.css' %}">
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+<script>
+   
+    var endpoint = 'http://127.0.0.1:8000/main/api/data'
+    var defaultData = []
+    var labels = [];
+
+    $.ajax({
+        method: "GET",
+        url: endpoint,
+        success: function (data) {
+            labels = data.labels
+            defaultData = data.chartdata;
+            console.log(labels)
+            setChart();
+        },
+        error: function (error_data) {
+            console.log(error_data)
+        }
+    })
+
+    function setChart() {
+        var ctx = document.getElementById('myChart');
+        var ctx2 = document.getElementById('myChart2');
+        var myChart = new Chart(ctx, {
+            type: 'polarArea',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'No of Quizs',
+                    data: defaultData,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            },
+            layouts:{
+            
+            }
+        });
+
+        var myChart = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+
+                    label: 'No of Quizs per Subject',
+                    data: defaultData,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    },
+                    
+                },
+                
+            }
+        });
+
+    }
+    
+</script>
+
 {% else %}
 <script>
 window.location.replace("{% url 'student-home' %}");
 </script>
+
 {% endif %}
 {% endblock %}
 
 {% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 
 <nav class="navbar navbar-light navbar-right" style="background-color: teal;">
   <h3><i class="fas fa-tachometer-alt"></i> ADMIN DASHBOARD</h3>
@@ -21,21 +131,33 @@ window.location.replace("{% url 'student-home' %}");
 
   <div class="left_menu">
     <div class="btn-group-vertical" role="group" >
-      <button type="button" id="dash_btn" class="btn-lg btn-danger bt">DASHBOARD</button>
+      <a href="{% url 'admin-dash' %}">
+        <button type="button" class="btn-lg btn-danger bt">DASHBOARD</button>
+      </a>
+    
        <button type="button" id="create" class="btn-lg btn-danger bt">CREATE A QUIZ</button>
         <button type="button" id="show" class="btn-lg btn-danger bt">Quizzes</button>
     </div>
 </div>
 
-<div class="dash" id="dashboard">  
-  <h1>Dash</h1>
+<div class="dash" id="dashboard">
+  <div class="row"> 
+    <div class="col-lg-6" url-endpoint='{% url "api-data" %}'>
+        <canvas id="myChart" width="400" height="400"></canvas>
+    </div>
+    <div class="col-lg-6" url-endpoint='{% url "api-data" %}'>
+        <canvas id="myChart2" width="400" height="400"></canvas>
+
+    
+</div>
+
+</div>
 </div>
 <div class="content" id="edit" style="text-align: center;">
   <h1>List of quizs</h1>
   
       {% for quiz in quizs %}
-     <a href="{% url 'quizdetail' quiz.id %}"> <h2>{{quiz.quiz_name}}</h2></a>
-    
+     <a href="{% url 'quizdetail' quiz.id %}"> <h2>{{quiz.quiz_subject}}</h2></a>
       {% endfor %}
   
   <a href="{% url 'quizcreate' %}"><button class="btn btn-primary">Create a Quiz</button></a>
@@ -43,7 +165,7 @@ window.location.replace("{% url 'student-home' %}");
 
 
 <div class="records" id="rec">
-  {% for quiz in quizs%}
+  {% for quiz in quizs %}
     <div class="container-fluid">
         <a class="card1" href="{% url 'student-records' quiz.id%}">
           <h3>{{quiz.quiz_subject}}</h3>
