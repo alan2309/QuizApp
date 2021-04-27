@@ -8,6 +8,7 @@ nav
 }
 nav h3{
     color:white;
+	margin-left: 2%;
 }
 
 
@@ -15,7 +16,7 @@ nav h3{
 {
     background-color: rgb(16, 121, 121);
     width:20%;
-    height:150vh;
+    height:1500vh;
     color:white;
     float:left;
 }
@@ -25,7 +26,7 @@ nav h3{
 }
 .content{
     background-color: #e0e0e0;
-    height:150vh; 
+    height:1500vh; 
     display:none;
 }
 form{
@@ -90,6 +91,8 @@ form{
 	 text-decoration: none;
 	 z-index: 0;
 	 overflow: hidden;
+	 text-decoration: none;
+	 color:teal;
 }
  .card1:before {
 	 content: "";
@@ -104,17 +107,23 @@ form{
 	 transform: scale(1);
 	 transform-origin: 50% 50%;
 	 transition: transform 0.25s ease-out;
+	 text-decoration: none;
 }
  .card1:hover:before {
 	 transform: scale(91);
+	 text-decoration: none;
+	 color:white;
 }
  .card1:hover p {
 	 transition: all 0.3s ease-out;
 	 color: #fff;
+	 text-decoration: none;
+	 text-decoration: none;
 }
  .card1:hover h3 {
 	 transition: all 0.3s ease-out;
 	 color: #fff;
+	 text-decoration: none;
 }
 
 .dash

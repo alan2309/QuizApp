@@ -23,22 +23,23 @@ window.location.replace("{% url 'student-home' %}");
     <div class="btn-group-vertical" role="group" >
       <button type="button" id="dash_btn" class="btn-lg btn-danger bt">DASHBOARD</button>
        <button type="button" id="create" class="btn-lg btn-danger bt">CREATE A QUIZ</button>
-        <button type="button" id="show" class="btn-lg btn-danger bt">Quizzes</button>
+        <button type="button" id="show" class="btn-lg btn-danger bt">COURSES</button>
     </div>
 </div>
 
 <div class="dash" id="dashboard">  
-  <h1>Dash</h1>
+  <h1>Dashboard</h1>
 </div>
 <div class="content" id="edit" style="text-align: center;">
-  <h1>List of quizs</h1>
+  <h1 align="justify" style="color:teal; padding:2%; padding-left:22%;">QUIZZES AVAILABLE</h1>
   
       {% for quiz in quizs %}
-     <a href="{% url 'quizdetail' quiz.id %}"> <h2>{{quiz.quiz_name}}</h2></a>
-    
+      <div class="container-fluid">
+        <a class="card1" style="text-decoration:none;"href="{% url 'quizdetail' quiz.id %}"><h2>{{quiz.quiz_name}}</h2></a>
+    </div>
       {% endfor %}
   
-  <a href="{% url 'quizcreate' %}"><button class="btn btn-primary">Create a Quiz</button></a>
+  <a href="{% url 'quizcreate' %}"><button class="btn-lg btn-outline-success">+ ADD QUIZ</button></a>
 </div>
 
 

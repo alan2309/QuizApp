@@ -1,9 +1,27 @@
 {% extends "base.html"%}
+{% load static %} 
+ 
+{% block header %}
+<link rel="stylesheet" href="{% static 'CSS/test.css' %}">
+{% endblock %} 
+
 {% block content%}
-<h1> Confirm Delete {{quiz_detail.quiz_name}} ??</h1>
-<form method="post">
-    {% csrf_token %}
-    <input type="submit" class="btn btn-danger" value="Delete">
-    <a href="{% url 'quizdetail' quiz.pk %}">Cancel</a>
-</form>
+<nav class="navbar navbar-light navbar-right" style="background-color: teal;">
+    <a href="{% url 'admin-dash' %}"><button type="button" class="btn-lg btn-danger btn">BACK TO ADMIN DASHBOARD</button></a>
+    <a href="{% url 'student-logout' %}"><button type="button" class="btn-lg btn-danger btn">SIGN OUT</button></a>
+  </nav>
+  <div class="result" id="res">
+    <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">ARE YOU SURE YOU WANT TO DELETE {{quiz_detail.quiz_name}} ?</h5>
+          <p class="card-text">
+            <form method="post">
+                {% csrf_token %}
+                <input type="submit" class="btn-sm btn-outline-danger" value="Delete">
+                <a href="{% url 'quizdetail' quiz.pk %}"><button type="button" class="btn-sm btn-success">CANCEL</button></a>
+            </form>
+          </p>
+        </div>
+        
+      </div>
 {% endblock %}

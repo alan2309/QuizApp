@@ -12,7 +12,7 @@
     <h3><i class="fas fa-tachometer-alt"></i> STUDENT DASHBOARD</h3>
     <a href="{% url 'student-logout' %}"><button type="button" class="btn-lg btn-danger" id="btn">SIGN OUT</button></a>
   </nav>
-<h1 style="margin: 30px 50px 0px;">OPEN QUIZZES:</h1>
+<h1 style="margin: 30px 50px 0px; color:teal;"><b>OPEN QUIZZES</b></h1>
   <div class="row">
 
     {% for quiz in open_quizzes%}
@@ -33,7 +33,7 @@
             </div>
             {% endfor %}
           </div>
-          <h1 style="margin: 0px 50px 0px;">CLOSED QUIZZES:</h1>
+          <h1 style="margin: 0px 50px 0px; color:teal"><b>CLOSED QUIZZES</b></h1>
           <div class="grid">
             {% for quiz in closed_quizzes%}
                     <div class="grid-item" id="card">
