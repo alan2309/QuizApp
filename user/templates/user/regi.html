@@ -6,7 +6,7 @@
 <title>Registration</title>
 {% endblock %}
 {% block content %}
-<div class="form-container">
+<div class="form-container form-container column animate__animated animate__zoomIn animate__slow">
     <h3>Create your account now!</h3>
     <p>It's free.</p>
     <form action="{% url 'quiz-regi' %}" method="POST">
@@ -14,10 +14,10 @@
         {% for message in messages %}
 <p style="color: red;">{{message}}</p>
 {% endfor %}
-<label for="User">User type :</label>
-<input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" onclick="Teacher()" required >
+<label for="User"></label>
+<input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" onclick="Teacher()" value = 'teacher' required >
 <label class="btn-sm btn-outline-success" for="success-outlined">TEACHER</label>
-<input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off" onclick="Student()" required >
+<input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off" onclick="Student()" value="student" required >
 <label class="btn-sm btn-outline-danger" for="danger-outlined">STUDENT</label>
 
 

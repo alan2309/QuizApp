@@ -1,30 +1,41 @@
 {% extends "base.html"%}
 {% block content%}
-    <h1>Welsome to Quiz Detail Page !</h1>
-    <h2><li>Subject : {{quiz_detail.quiz_subject}}</li></h2>
-    <h2><li>Name : {{quiz_detail.quiz_name}}</li></h2>
-    <h3>Questions:</h3>
+<nav class="navbar navbar-light navbar-right" style="background-color: teal;">
+    <a href="{% url 'admin-dash' %}"><button type="button" class="btn-lg btn-danger btn">BACK TO ADMIN DASHBOARD</button></a>
+    <a href="{% url 'student-logout' %}"><button type="button" class="btn-lg btn-danger btn">SIGN OUT</button></a>
+  </nav>
+  <div class="container">
+    <h3 style="color:teal;">Course: {{quiz_detail.quiz_subject}} || Quiz Name : {{quiz_detail.quiz_name}}</h3>
+    <h3 style="color:teal;">Questions:</h3>
     <ol>
     {% for question in quiz_detail.question_set.all %}
         <hr>
         <li>    
             <a href="#">{{question.question_text}}</a></li>
     {% for ans in question.choice_set.all %}
-    <ul>
+    <ul type="none">
         <li>   
-            <p><a href="#">{{ans.choice_text}}</a> : value ---> {{ans.ans}}</p>     
+            <p><a href="#">{{ans.choice_text}}</a> : value : {{ans.ans}}</p>     
         </li>
     </ul>
     {% endfor %}
-    <a type='muted' href="{% url 'choiceadd' pk=quiz_detail.pk p=question.id %}">add Values of Choices ??</a>
+    <a type='muted' href="{% url 'choiceadd' pk=quiz_detail.pk p=question.id %}"><button type="button" class="btn-sm btn-outline-success">ADD OPTIONS</button></a>
    <hr>
     {% endfor %}
 </ol>
 </div>
-<div >
+<div class="buttons">
     
-    <a  href="{% url 'quizdelete' pk=quiz_detail.pk %}"> <button class="btn btn-danger">Delete Quiz</button></a>
-    <a  href="{% url 'questionadd' pk=quiz_detail.pk %}"> <button class="btn btn-danger">Add Questions</button></a>
-    <a href="{% url 'admin-dash'%}">Back to QuizList</a>
+    <a  href="{% url 'quizdelete' pk=quiz_detail.pk %}"> <button class="btn-sm btn-outline-danger bt">Delete Quiz</button></a>
+    <a  href="{% url 'questionadd' pk=quiz_detail.pk %}"> <button class="btn-sm btn-outline-success bt">Add Questions</button></a>
 </div>
+  </div>
+    <style>
+        .buttons{
+            padding: 0.5%;
+            margin-left:2%;
+            text-align: center;
+        }
+    </style>
+    
 {% endblock %}

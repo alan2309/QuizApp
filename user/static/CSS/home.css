@@ -27,6 +27,11 @@ body{
     text-align: center;
     font-weight: bold;
     margin-bottom: 2%;
+    
+}
+.buttons:hover {
+    -webkit-animation: pulse 2s;
+    animation: pulse 2s;
 }
 #content
 {

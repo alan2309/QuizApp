@@ -9,16 +9,29 @@
 
 {% block content%}
 <nav class="navbar navbar-light navbar-right" style="background-color: teal; padding-right: 30px;">
-    <h3><i class="fas fa-tachometer-alt"></i> STUDENT DASHBOARD</h3>
+  <a href="{% url 'quiz-home' %}"><button type="button" class="btn-lg btn-danger" id="btn">BACK HOME</button></a>
+    <h3 class="animate__animated animate__tada animate__slow"><i class="fa fa-tachometer fa-lg" aria-hidden="true" style="margin-right: 10px;"></i> STUDENT DASHBOARD</h3>
     <a href="{% url 'student-logout' %}"><button type="button" class="btn-lg btn-danger" id="btn">SIGN OUT</button></a>
   </nav>
-<h1 style="margin: 30px 50px 0px;">OPEN QUIZZES:</h1>
-  <div class="row">
+<h1 class="animate__animated animate__fadeInUp animate__slow" style="margin: 30px 50px 0px; color:teal;"><b>OPEN QUIZZES</b></h1>
+  <div class="row animate__animated animate__fadeInUp animate__slow ">
 
     {% for quiz in open_quizzes%}
     <div class="col-lg-4 col-md-6 grid-item" id="card" style="margin: 20px 1.5%; width:30%;">
               <div class="card" >
-                <img class="card-img" src="https://assets.goodfirms.co/blog/general/1566798061-exam-online.jpg" />
+                {% if quiz.quiz_subject == "WEB PROGRAMMING" %}
+                        <img class="card-img" src="https://miro.medium.com/max/2400/1*pE2fOVDikEUwiQJlh4ggzg.jpeg" />
+                        {% elif quiz.quiz_subject == "PYTHON" %}
+                        <img class="card-img" src="https://latesthackingnews.com/wp-content/uploads/2016/09/python-Programming-Language-Software.jpg" />
+                        {% elif quiz.quiz_subject == "DAA" %}
+                        <img class="card-img" src="https://miro.medium.com/max/3200/0*xz50V4u-Cvz0I30e.jpg" />
+                        {% elif quiz.quiz_subject == "AUTOMATA THEORY" %}
+                        <img class="card-img" src="https://s3.ap-south-1.amazonaws.com/www.virtulearn.in/Flat.jpg" />
+                        {% elif quiz.quiz_subject == "COMPUTER NETWORKS" %}
+                        <img class="card-img" src="https://www.skillrary.com/uploads/updatedimages/527_small.png" />
+                        {% else %}
+                        <img class="card-img" src="https://assets.goodfirms.co/blog/general/1566798061-exam-online.jpg" />
+                        {% endif%}
                 <div class="card-content">
                   <h1 class="card-header">{{quiz.quiz_subject}}</h1>
                   <p>EXAM TYPE: {{quiz.quiz_name}}<br/>QUIZ CLOSES ON: <b>{{quiz.quiz_end}}</b><br>DURATION: <b>{{quiz.quiz_time}}mins</b></p>
@@ -33,12 +46,24 @@
             </div>
             {% endfor %}
           </div>
-          <h1 style="margin: 0px 50px 0px;">CLOSED QUIZZES:</h1>
-          <div class="grid">
+          <h1 class="animate__animated animate__fadeInUp animate__slow"style="margin: 0px 50px 0px; color:teal"><b>CLOSED QUIZZES</b></h1>
+          <div class="grid animate__animated animate__fadeInUp animate__slow">
             {% for quiz in closed_quizzes%}
                     <div class="grid-item" id="card">
                       <div class="card">
+                        {% if quiz.quiz_subject == "WEB PROGRAMMING" %}
+                        <img class="card-img" src="https://miro.medium.com/max/2400/1*pE2fOVDikEUwiQJlh4ggzg.jpeg" />
+                        {% elif quiz.quiz_subject == "PYTHON" %}
+                        <img class="card-img" src="https://latesthackingnews.com/wp-content/uploads/2016/09/python-Programming-Language-Software.jpg" />
+                        {% elif quiz.quiz_subject == "DAA" %}
+                        <img class="card-img" src="https://miro.medium.com/max/3200/0*xz50V4u-Cvz0I30e.jpg" />
+                        {% elif quiz.quiz_subject == "AUTOMATA THEORY" %}
+                        <img class="card-img" src="https://s3.ap-south-1.amazonaws.com/www.virtulearn.in/Flat.jpg" />
+                        {% elif quiz.quiz_subject == "COMPUTER NETWORKS" %}
+                        <img class="card-img" src="https://www.skillrary.com/uploads/updatedimages/527_small.png" />
+                        {% else %}
                         <img class="card-img" src="https://assets.goodfirms.co/blog/general/1566798061-exam-online.jpg" />
+                        {% endif%}
                         <div class="card-content">
                           <h1 class="card-header">{{quiz.quiz_subject}}</h1>
                           <p>EXAM TYPE: {{quiz.quiz_name}}<br/>QUIZ CLOSED ON: <b>{{quiz.quiz_end}}</b><br>DURATION: <b>{{quiz.quiz_time}}mins</b></p>

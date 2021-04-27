@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="{% static 'CSS/regi.css' %}">
 {% endblock %}
 {% block content %}
-<div class="form-container">
+<div class="form-container column animate__animated animate__zoomIn animate__slow">
     <h3>SIGN IN</h3>
 <form action="{% url 'quiz-login' %}" method="POST">
     {% csrf_token %}
