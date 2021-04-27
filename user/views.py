@@ -36,18 +36,19 @@ def register(request):
             return redirect('quiz-regi') 
         else:
             user = User.objects.create_user(username = email,password = password,email = email,first_name = first_name,last_name = last_name)
-            if request.POST['user'] == "student" :
+            if request.POST['options-outlined'] == "student" :
                  user.save()
+                 return redirect('student-home')
             else:
                 if request.POST['teacher-code']== "ABCD":
                     user.is_staff= True
                     user.save()
+                    return redirect('admin-dash')
+
                 else:
                     messages.info(request,'**Code INCORRECT**')
                     return redirect('quiz-regi')
 
-
-            return redirect('student-home')
     else:        
         return render(request,'user/regi.html')
         
