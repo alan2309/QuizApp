@@ -34,6 +34,36 @@ class ChartData(APIView):
              }
         return Response(data)
 
+class ChartStudentData(APIView):
+    authentication_classes=[]
+    permission_classes=[]
+    def get(self,request,*args,**kwargs):
+        res = []
+        a=[]
+       
+        results = Result.objects.filter(quiz=kwargs['pk'],student_email=kwargs['p'])
+        resultsf = Result.objects.filter(quiz=kwargs['pk'])
+        count=[]
+        for result in results:
+            res.append(str(result.student_email))
+            a.append(str(result.student_marks))
+
+        for result in resultsf:
+            count.append(result.student_marks)
+        
+        maxMarks=max(count)
+        a.append(maxMarks)
+        minMarks=min(count)
+        a.append(minMarks)
+            
+        chartLabel = "Data"
+        data ={
+                     "chartdata":a,
+                     "labels":res,
+                     "chartLabel":chartLabel,   
+             }
+        return Response(data)
+
 class QuizListView(ListView):
     context_object_name='quizs'
     template_name='student/admin_dash.html'
@@ -84,6 +114,8 @@ def quiz(request,quiz_id):
     quiz = Quiz.objects.get(id = quiz_id)
     if quiz.result_set.filter(student_email = request.POST['email']).exists():
         return render(request,'student/student-result.html',{
+            'email':request.POST['email'],
+            'qid':quiz_id,
             'result': quiz.result_set.get(student_email = request.POST['email']).student_marks,
             'total': quiz.result_set.get(student_email = request.POST['email']).total_marks,
             })
@@ -127,7 +159,7 @@ def results(request,quiz_id):
     x=quiz.result_set.create(student_email=request.POST['email'],student_marks=str(results),student_name=request.POST['name'],student_sap=request.POST['sap'],quiz=quiz_id,total_marks=str(total))
     x.save()
 
-    return render(request,'student/results.html',{'result':results,'sap':request.POST['sap'],'total':total})
+    return render(request,'student/results.html',{'result':results,'sap':request.POST['sap'],'total':total,'qid':quiz_id,'email':request.POST['email']})
 
 
 def records(request,quiz_id):

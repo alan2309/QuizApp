@@ -16,4 +16,6 @@ urlpatterns = [
     path('delete/<int:pk>/',views.QuizDeleteView.as_view(),name='quizdelete'),
     path('create/<int:pk>/question/<int:p>/choice',views.ChoiceCreateView.as_view(),name='choiceadd'),
     path('api/data',views.ChartData.as_view(),name='api-data'),
+    path('api/studentdata/<int:pk>/<str:p>',views.ChartStudentData.as_view(),name='api-studentdata'),
+
 ]
