@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse 
+from django.http import HttpResponse ,JsonResponse
 from django.contrib.auth.decorators import login_required
 from .models import Quiz,Question,Result,Choice
 from datetime import datetime
@@ -8,13 +8,42 @@ from django.views.generic import (View,TemplateView,
                                   CreateView,UpdateView,DeleteView)
 from django.urls import reverse_lazy
 from django.contrib import messages
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-
+class ChartData(APIView):
+    authentication_classes=[]
+    permission_classes=[]
+    def get(self,request,*args,**kwargs):
+        res = []
+        a = []
+        quizs = Quiz.objects.all()
+        for quiz in quizs:
+            if quiz.quiz_subject not in res:
+                res.append(str(quiz.quiz_subject))
+                resindex=res.index(str(quiz.quiz_subject))
+                a.append(1)
+            else :
+                aindex=res.index(str(quiz.quiz_subject))
+                a[aindex]=a[aindex]+1
+        chartLabel = "Data"
+        data ={
+                     "chartdata":a,
+                     "labels":res,
+                     "chartLabel":chartLabel,   
+             }
+        return Response(data)
 
 class QuizListView(ListView):
     context_object_name='quizs'
-    model=Quiz
     template_name='student/admin_dash.html'
+    model=Quiz
+    def get_context_data(self, **kwargs):
+        context = super(QuizListView, self).get_context_data(**kwargs)
+        context['questions_list'] = Question.objects.all()
+        context['results_list'] = Result.objects.all()
+        return context
+       
 
 class QuizCreateView(CreateView):
     fields=('quiz_subject','quiz_name','quiz_end','quiz_time')
@@ -100,9 +129,6 @@ def results(request,quiz_id):
 
     return render(request,'student/results.html',{'result':results,'sap':request.POST['sap'],'total':total})
 
-@login_required
-# def adminDash(request):
-#     return render(request,'student/admin_dash.html',{'quizzes':Quiz.objects.all()})    
 
 def records(request,quiz_id):
     quiz = Quiz.objects.get(id=quiz_id)
