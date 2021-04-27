@@ -126,7 +126,7 @@ window.location.replace("{% url 'student-home' %}");
 
 <nav class="navbar navbar-light navbar-right" style="background-color: teal;">
   <a href="{% url 'quiz-home' %}"><button type="button" class="btn-lg btn-primary" id="btn">BACK HOME</button></a>
-  <h3><i class="fas fa-tachometer-alt"></i> ADMIN DASHBOARD</h3>
+  <h3 class="animate__animated animate__tada animate__slow"><i class="fas fa-tachometer-alt "></i> ADMIN DASHBOARD</h3>
     <a href="{% url 'student-logout' %}"><button type="button" class="btn-lg btn-danger btn">SIGN OUT</button></a>
   </nav>
 
@@ -154,7 +154,7 @@ window.location.replace("{% url 'student-home' %}");
 
 </div>
 </div>
-<div class="content" id="edit" style="text-align: center;">
+<!-- <div class="content" id="edit" style="text-align: center;">
   <h1 allign="justify" style="color:teal; padding:2%; padding-left:22%;">QUIZZES AVAILABLE</h1>
   
       {% for quiz in quizs %}
@@ -162,7 +162,21 @@ window.location.replace("{% url 'student-home' %}");
       {% endfor %}
   
   <a href="{% url 'quizcreate' %}"><button class="btn-lg btn-outline-success">+ ADD QUIZ</button></a>
-</div>
+</div> -->
+<div class="dash" id="dashboard">  
+    
+  </div>
+  <div class="content" id="edit" style="text-align: center;">
+    <h1 allign="justify" style="color:teal; padding:2%; padding-left:22%;">QUIZZES AVAILABLE</h1>
+    
+        {% for quiz in quizs %}
+        <div class="container-fluid animate_animated animateslideInUp animate_slow">
+          <a class="card1" style="text-decoration:none;"href="{% url 'quizdetail' quiz.id %}"><h2>{{quiz.quiz_subject}}-{{quiz.quiz_name}}</h2></a>
+      </div>
+        {% endfor %}
+    
+    <a href="{% url 'quizcreate' %}"><button class="btn-lg btn-outline-success">+ ADD QUIZ</button></a>
+  </div>
 
 
 <div class="records" id="rec">

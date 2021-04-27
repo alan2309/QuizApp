@@ -11,11 +11,6 @@ from django.contrib import messages
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-
-
-
-
-
 class ChartData(APIView):
     authentication_classes=[]
     permission_classes=[]
@@ -23,9 +18,6 @@ class ChartData(APIView):
         res = []
         a = []
         quizs = Quiz.objects.all()
-        print("hello")
-
-
         for quiz in quizs:
             if quiz.quiz_subject not in res:
                 res.append(str(quiz.quiz_subject))
@@ -34,31 +26,13 @@ class ChartData(APIView):
             else :
                 aindex=res.index(str(quiz.quiz_subject))
                 a[aindex]=a[aindex]+1
-            
-
-        print("------------------------------------------------")
-        print(len(res))
-        print(len(a))
-        print("------------------------------------------------")
-        labels = [
-            'January',
-            'February', 
-            'March', 
-            'April', 
-            'May', 
-            'June', 
-            'July'
-            ]
         chartLabel = "Data"
-        chartdata = [60, 10, 5, 2, 20, 30, 45]
         data ={
                      "chartdata":a,
                      "labels":res,
-                     "chartLabel":chartLabel,
-                     
+                     "chartLabel":chartLabel,   
              }
         return Response(data)
-
 
 class QuizListView(ListView):
     context_object_name='quizs'
