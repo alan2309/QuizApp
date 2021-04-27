@@ -34,7 +34,7 @@ window.location.replace("{% url 'student-home' %}");
   <h1 align="justify" style="color:teal; padding:2%; padding-left:22%;">QUIZZES AVAILABLE</h1>
   
       {% for quiz in quizs %}
-      <div class="container-fluid">
+      <div class="container-fluid animate__animated animate__slideInUp animate__slow">
         <a class="card1" style="text-decoration:none;"href="{% url 'quizdetail' quiz.id %}"><h2>{{quiz.quiz_name}}</h2></a>
     </div>
       {% endfor %}
@@ -43,7 +43,7 @@ window.location.replace("{% url 'student-home' %}");
 </div>
 
 
-<div class="records" id="rec">
+<div class="records animate__animated animate__slideInUp animate__slow" id="rec">
   {% for quiz in quizs%}
     <div class="container-fluid">
         <a class="card1" href="{% url 'student-records' quiz.id%}">
