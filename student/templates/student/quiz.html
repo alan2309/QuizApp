@@ -10,7 +10,7 @@
 <div class="left">
   <div class="content">
     <div class="container">
-      <div class="card">
+      <div class="card column animate__animated animate__pulse animate__slower">
         <h3>General Instructions</h3>
         <ol type="1">
           <li>You have {{time}} minutes to answer each question.</li>
@@ -22,7 +22,7 @@
   </div>
 </div>
 <div class="right">
-  <div class="form-container">
+  <div class="form-container column animate__animated animate__zoomIn animate__slow">
     <h3>FILL IN YOUR DETAILS.</h3>
     <form action="{% url 'test-quiz' quiz_id%}" method="POST">
       {% csrf_token %}

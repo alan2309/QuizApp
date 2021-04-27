@@ -10,7 +10,7 @@
 <nav class="navbar navbar-light navbar-right" style="background-color: teal;">
     <h3 id="countdown">{{time}}</h3><h3 style="margin-right: 2%;">ONLINE EXAM</h3></nav>
    
-    <div id="quiz">
+    <div id="quiz column animate__animated animate__pulse animate__slow">
         <form action="{% url 'result-quiz' quiz_id %}" name="myForm" method="POST">
           {% csrf_token %}
           <input type="hidden" value="{{sap}}" name="sap"> 
