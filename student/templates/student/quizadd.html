@@ -1,14 +1,14 @@
+{% extends 'base.html' %}
 {% block content%}
+{% load crispy_forms_tags %}
 <h1>
     {% if not form.instance.pk %}
        Create Quiz|Question|Answer
-    {% else %}
-       Updatee Quiz|Question|Answer
     {% endif %}
 </h1>
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{form|crispy}}
     
 <p>Enter date in yyyy-mm-dd **</p>
     <input type="submit" class="btn btn-primary" value="submit">

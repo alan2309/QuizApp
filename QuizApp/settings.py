@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -122,3 +123,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 LOGIN_URL = 'quiz-login'
 LOGIN_REDIRECT_URL='student-home'
+CRISPY_TEMPLATE_PACK ='bootstrap4'
