@@ -142,27 +142,22 @@ window.location.replace("{% url 'student-home' %}");
     </div>
 </div>
 
-<div class="dash" id="dashboard">
-  <div class="row"> 
-        <div class="col-lg-6" url-endpoint='{% url "api-data" %}'>
-<<<<<<< HEAD
-            <div class="container-fluid" >
-            <canvas id="myChart" width="400" height="400"></canvas>
-=======
-            <div class="container-fluid">
-            <canvas id="myChart" width="500" height="500"></canvas>
->>>>>>> 6719701d7e3677a220641a0fa02ba0150108e667
-        </div>
-    </div>
-   
-    <div class="col-lg-6" url-endpoint='{% url "api-data" %}'>
-        <div class="container-fluid" >
-        <canvas id="myChart2" width="500" height="500"></canvas>
-        </div>
-</div>
-
-</div>
-</div>
+<div class="dash" id="dashboard" style="padding-top: 2%;">
+    <div class="row" style="margin-left: 100px;margin-top: 10px;"> 
+          <div class="col-lg-6" url-endpoint='{% url "api-data" %}'>
+              <div class="container-fluid">
+              <canvas id="myChart" width="350" height="500"></canvas>
+          </div>
+      </div>
+     
+      <div class="col-lg-6" url-endpoint='{% url "api-data" %}'>
+          <div class="container-fluid" >
+          <canvas id="myChart2" width="350" height="500"></canvas>
+          </div>
+  </div>
+  
+  </div>
+  </div>
 
 <div class="dash" id="dashboard">  
     
