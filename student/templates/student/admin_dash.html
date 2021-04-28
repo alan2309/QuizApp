@@ -142,32 +142,31 @@ window.location.replace("{% url 'student-home' %}");
     </div>
 </div>
 
-<div class="dash" id="dashboard">
-  <div class="row"> 
+<div class="dash" id="dashboard" style="padding-top: 2%;">
+  <div class="row" style="margin-left: 100px;margin-top: 10px;"> 
         <div class="col-lg-6" url-endpoint='{% url "api-data" %}'>
             <div class="container-fluid">
-            <canvas id="myChart" width="500" height="500"></canvas>
+            <canvas id="myChart" width="350" height="500"></canvas>
         </div>
     </div>
    
     <div class="col-lg-6" url-endpoint='{% url "api-data" %}'>
         <div class="container-fluid" >
-        <canvas id="myChart2" width="500" height="500"></canvas>
+        <canvas id="myChart2" width="350" height="500"></canvas>
         </div>
 </div>
 
 </div>
 </div>
 
-<div class="dash" id="dashboard">  
-    
-  </div>
-  <div class="content" id="edit" style="text-align: center;">
-    <h1 allign="justify" style="color:teal; padding:2%; padding-left:22%;">QUIZZES AVAILABLE</h1>
+<div class="content" id="edit" style="text-align: center;">
+    <h1 allign="justify" style="color:black; padding:2%; padding-left:22%;">QUIZZES AVAILABLE</h1>
     
         {% for quiz in quizs %}
         <div class="container-fluid animate_animated animateslideInUp animate_slow">
-          <a class="card1" style="text-decoration:none;"href="{% url 'quizdetail' quiz.id %}"><h2>{{quiz.quiz_subject}}-{{quiz.quiz_name}}</h2></a>
+            <a class="card1" style="text-decoration:none;"href="{% url 'quizdetail' quiz.id %}">
+            <h3>{{quiz.quiz_subject}}-{{quiz.quiz_name}}</h3>
+        </a>
       </div>
         {% endfor %}
     
@@ -175,13 +174,14 @@ window.location.replace("{% url 'student-home' %}");
   </div>
 
 
-<div class="records" id="rec">
+<div class="records" id="rec" >
   {% for quiz in quizs %}
-    <div class="container-fluid">
-        <a class="card1" href="{% url 'student-records' quiz.id%}">
+    <div class="container-fluid" >
+        <a class="card1" href="{% url 'student-records' quiz.id%}" style="margin-left: 5%;">
           <h3>{{quiz.quiz_subject}}</h3>
           <p class="small">TEST DATE: {{quiz.quiz_end}}<br/>
-          EXAM TYPE: {{quiz.quiz_name}}<br/> <b><i>TIME DURATION: {{quiz.quiz_time}}mins</i></b></p>
+          EXAM TYPE: {{quiz.quiz_name}}<br/> 
+          <b><i>TIME DURATION: {{quiz.quiz_time}}mins</i></b></p>
         </a>
     </div>
     {% endfor %}
