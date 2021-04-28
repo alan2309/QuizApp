@@ -53,8 +53,10 @@ class ChartStudentData(APIView):
         
         maxMarks=max(count)
         a.append(maxMarks)
+        res.append("MaxMarks")
         minMarks=min(count)
         a.append(minMarks)
+        res.append("minMarks")
             
         chartLabel = "Data"
         data ={

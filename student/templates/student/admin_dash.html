@@ -125,13 +125,13 @@ window.location.replace("{% url 'student-home' %}");
 {% block content %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 
-<nav class="navbar navbar-light navbar-right" style="background-color: teal;">
+<nav class="navbar navbar-light navbar-right" style="background-color: teal; padding:0 30px;">
   <a href="{% url 'quiz-home' %}"><button type="button" class="btn-lg btn-primary" id="btn">BACK HOME</button></a>
-  <h3 class="animate__animated animate__tada animate__slow"><i class="fas fa-tachometer-alt "></i> ADMIN DASHBOARD</h3>
+  <h3 class="animate__animated animate__tada animate__slow"><i class="fa fa-tachometer fa-lg"></i> ADMIN DASHBOARD</h3>
     <a href="{% url 'student-logout' %}"><button type="button" class="btn-lg btn-danger btn">SIGN OUT</button></a>
   </nav>
 
-  <div class="left_menu">
+  <div class="left_menu" style="padding:0 30px;">
     <div class="btn-group-vertical" role="group" >
       <a href="{% url 'admin-dash' %}">
         <button type="button" class="btn-lg btn-danger bt">DASHBOARD</button>
@@ -155,15 +155,7 @@ window.location.replace("{% url 'student-home' %}");
 
 </div>
 </div>
-<!-- <div class="content" id="edit" style="text-align: center;">
-  <h1 allign="justify" style="color:teal; padding:2%; padding-left:22%;">QUIZZES AVAILABLE</h1>
-  
-      {% for quiz in quizs %}
-     <a href="{% url 'quizdetail' quiz.id %}"> <h2>{{quiz.quiz_subject}}</h2></a>
-      {% endfor %}
-  
-  <a href="{% url 'quizcreate' %}"><button class="btn-lg btn-outline-success">+ ADD QUIZ</button></a>
-</div> -->
+
 <div class="dash" id="dashboard">  
     
   </div>
