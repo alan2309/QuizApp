@@ -11,11 +11,11 @@
     {% for question in quiz_detail.question_set.all %}
         <hr>
         <li>    
-            <a href="#">{{question.question_text}}</a></li>
+            <b>{{question.question_text}}</b></li>
     {% for ans in question.choice_set.all %}
     <ul type="none">
         <li>   
-            <p><a href="#">{{ans.choice_text}}</a> : value : {{ans.ans}}</p>     
+            <p>{{ans.choice_text}} : [value : <i>{{ans.ans}}</i>]</p>     
         </li>
     </ul>
     {% endfor %}

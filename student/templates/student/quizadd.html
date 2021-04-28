@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{%block header %}
+{% endblock %}
 {% block content%}
 {% load crispy_forms_tags %}
 <nav class="navbar navbar-light navbar-right" style="background-color: teal; padding:10px 30px;">
@@ -7,15 +9,21 @@
   </nav>
   <div class="container">
     <h1 style="margin-top:2%; color:teal;">
-        {% if not form.instance.pk %}
-           Create Quiz|Question|Answer
+        {% if not form.instance.pk and '/main/quizcreate/' == request.path %}
+           Create Quiz
+        {% elif not form.instance.pk and '/main/quizdetail/' == url %}
+        Create Question
+        {% else %}
+        Create Choices
         {% endif %}
     </h1>
     <form method="post">
         {% csrf_token %}
         {{form|crispy}}
-        
+    {% if '/main/quizcreate/' == request.path %}
     <p>Enter date in yyyy-mm-dd **</p>
+    {% endif %}
+  <hr style="color: white;">
         <input type="submit" class="btn-lg btn-success" value="ADD">
     </form>
   </div>

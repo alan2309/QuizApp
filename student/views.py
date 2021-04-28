@@ -96,6 +96,12 @@ class QuestionCreateView(CreateView):
     fields=('quiz','question_text')
     model=Question
     template_name='student/quizadd.html'
+    def get_context_data(self, **kwargs):
+        txt=self.request.get_full_path()
+        x = txt.split(str(self.kwargs['pk']))
+        context = super(QuestionCreateView, self).get_context_data(**kwargs)
+        context['url'] = x[0]
+        return context
 
 class QuizDeleteView(DeleteView):
     model=Quiz
