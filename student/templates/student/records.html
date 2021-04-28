@@ -13,7 +13,7 @@ window.location.replace("{% url 'student-home' %}");
 {% endblock %}
 {% block content %}
 
-<nav class="navbar navbar-light navbar-right" style="background-color: teal;">
+<nav class="navbar navbar-light navbar-right" style="background-color: teal; padding:10px 30px;">
     <a href="{% url 'admin-dash' %}"><button type="button" class="btn-lg btn-danger btn">BACK TO ADMIN DASHBOARD</button></a>
     <a href="{% url 'student-logout' %}"><button type="button" class="btn-lg btn-danger btn">SIGN OUT</button></a>
   </nav>
