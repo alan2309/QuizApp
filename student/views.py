@@ -44,9 +44,6 @@ class ChartStudentData(APIView):
         results = Result.objects.filter(quiz=kwargs['pk'],student_email=kwargs['p'])
         resultsf = Result.objects.filter(quiz=kwargs['pk'])
         count=[]
-        for result in results:
-            res.append(str(result.student_email))
-            a.append(str(result.student_marks))
 
         for result in resultsf:
             count.append(result.student_marks)
@@ -54,9 +51,14 @@ class ChartStudentData(APIView):
         maxMarks=max(count)
         a.append(maxMarks)
         res.append("MaxMarks")
+
+        for result in results:
+            res.append(str(result.student_email))
+            a.append(str(result.student_marks))
+            
         minMarks=min(count)
         a.append(minMarks)
-        res.append("minMarks")
+        res.append("MinMarks")
             
         chartLabel = "Data"
         data ={
