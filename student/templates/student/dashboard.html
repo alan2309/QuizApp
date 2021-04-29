@@ -46,39 +46,36 @@
             </div>
             {% endfor %}
           </div>
-
-
           <h1 class="animate__animated animate__fadeInUp animate__slow"style="margin: 0px 50px 0px; color:teal"><b>CLOSED QUIZZES</b></h1>
-           <div class="row animate__animated animate__fadeInUp animate__slow ">
-
-    {% for quiz in closed_quizzes%}
-    <div class="col-lg-4 col-md-6 grid-item" id="card" style="margin: 20px 1.6%; width:30%;">
-              <div class="card" >
+          <div class="row animate__animated animate__fadeInUp animate__slow">
+            {% for quiz in closed_quizzes%}
+            <div class="col-lg-4 col-md-6 grid-item" id="card" style="margin: 20px 1.6%; width:30%;">
+              <div class="card">
                 {% if quiz.quiz_subject == "WEB PROGRAMMING" %}
-                        <img class="card-img" src="https://miro.medium.com/max/2400/1*pE2fOVDikEUwiQJlh4ggzg.jpeg" />
-                        {% elif quiz.quiz_subject == "PYTHON" %}
-                        <img class="card-img" src="https://latesthackingnews.com/wp-content/uploads/2016/09/python-Programming-Language-Software.jpg" />
-                        {% elif quiz.quiz_subject == "DAA" %}
-                        <img class="card-img" src="https://miro.medium.com/max/3200/0*xz50V4u-Cvz0I30e.jpg" />
-                        {% elif quiz.quiz_subject == "AUTOMATA THEORY" %}
-                        <img class="card-img" src="https://s3.ap-south-1.amazonaws.com/www.virtulearn.in/Flat.jpg" />
-                        {% elif quiz.quiz_subject == "COMPUTER NETWORKS" %}
-                        <img class="card-img" src="https://www.skillrary.com/uploads/updatedimages/527_small.png" />
-                        {% else %}
-                        <img class="card-img" src="https://assets.goodfirms.co/blog/general/1566798061-exam-online.jpg" />
-                        {% endif%}
+                <img class="card-img" src="https://miro.medium.com/max/2400/1*pE2fOVDikEUwiQJlh4ggzg.jpeg" />
+                {% elif quiz.quiz_subject == "PYTHON" %}
+                <img class="card-img" src="https://latesthackingnews.com/wp-content/uploads/2016/09/python-Programming-Language-Software.jpg" />
+                {% elif quiz.quiz_subject == "DAA" %}
+                <img class="card-img" src="https://miro.medium.com/max/3200/0*xz50V4u-Cvz0I30e.jpg" />
+                {% elif quiz.quiz_subject == "AUTOMATA THEORY" %}
+                <img class="card-img" src="https://s3.ap-south-1.amazonaws.com/www.virtulearn.in/Flat.jpg" />
+                {% elif quiz.quiz_subject == "COMPUTER NETWORKS" %}
+                <img class="card-img" src="https://www.skillrary.com/uploads/updatedimages/527_small.png" />
+                {% else %}
+                <img class="card-img" src="https://assets.goodfirms.co/blog/general/1566798061-exam-online.jpg" />
+                {% endif%}
                 <div class="card-content">
                   <h1 class="card-header">{{quiz.quiz_subject}}</h1>
-                  <p>EXAM TYPE: {{quiz.quiz_name}}<br/>QUIZ CLOSES ON: <b>{{quiz.quiz_end}}</b><br>DURATION: <b>{{quiz.quiz_time}}mins</b></p>
+                  <p>EXAM TYPE: {{quiz.quiz_name}}<br/>QUIZ CLOSED ON: <b>{{quiz.quiz_end}}</b><br>DURATION: <b>{{quiz.quiz_time}}mins</b></p>
                   <form action="{% url 'enter-quiz' quiz.id%}" method="post">
                     {% csrf_token %}
-                    <input type="text" name="status" id="status" value="open" hidden>
+                    <input type="text" name="status" id="status" value="closed" hidden>
                     <input type="email" name="email" id="email" value="{{user.email}}" hidden>
-                    <button type="submit" class="card-btn" >TAKE A QUIZ<span>&rarr;</span></button>
+                    <button type="submit" class="card-btn" >VIEW RESULTS<span>&rarr;</span></button>
                 </form>
                 </div>
               </div>
             </div>
-            {% endfor %}
-          </div>
+                    {% endfor %}
+                  </div>
 {% endblock %}
