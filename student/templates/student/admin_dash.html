@@ -12,7 +12,6 @@
     integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
 <script>
-
     var endpoint = 'http://127.0.0.1:8000/main/api/data'
     var defaultData = []
     var labels = [];
@@ -67,11 +66,7 @@
                     }
                 }
             },
-            layouts:{
-            
-            }
         });
-
         var myChart = new Chart(ctx2, {
             type: 'bar',
             data: {
@@ -102,21 +97,29 @@
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
                     },
-                    
+                    xAxes: [{
+                        beginAtZero: true,
+                        ticks: {
+                            autoSkip: false
+                        }
+
+                    }]
+
+
                 },
-                
+
+
             }
         });
 
     }
-    
 </script>
 
 {% else %}
 <script>
-window.location.replace("{% url 'student-home' %}");
+    window.location.replace("{% url 'student-home' %}");
 </script>
 
 {% endif %}
@@ -126,62 +129,61 @@ window.location.replace("{% url 'student-home' %}");
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 
 <nav class="navbar navbar-light navbar-right" style="background-color: teal; padding:0 30px;">
-  <a href="{% url 'quiz-home' %}"><button type="button" class="btn-lg btn-primary" id="btn">BACK HOME</button></a>
-  <h3 class="animate__animated animate__tada animate__slow"><i class="fa fa-tachometer fa-lg"></i> ADMIN DASHBOARD</h3>
+    <a href="{% url 'quiz-home' %}"><button type="button" class="btn-lg btn-primary" id="btn">BACK HOME</button></a>
+    <h3 class="animate__animated animate__tada animate__slow"><i class="fa fa-tachometer fa-lg"></i> ADMIN DASHBOARD
+    </h3>
     <a href="{% url 'student-logout' %}"><button type="button" class="btn-lg btn-danger btn">SIGN OUT</button></a>
-  </nav>
+</nav>
 
-  <div class="left_menu" style="padding:0 30px;">
-    <div class="btn-group-vertical" role="group" >
-      <a href="{% url 'admin-dash' %}">
-        <button type="button" class="btn-lg btn-danger bt">DASHBOARD</button>
-      </a>
-    
-       <button type="button" id="create" class="btn-lg btn-danger bt">CREATE A QUIZ</button>
+<div class="left_menu" style="padding:0 30px;">
+    <div class="btn-group-vertical" role="group">
+        <a href="{% url 'admin-dash' %}">
+            <button type="button" class="btn-lg btn-danger bt">DASHBOARD</button>
+        </a>
+
+        <button type="button" id="create" class="btn-lg btn-danger bt">CREATE A QUIZ</button>
         <button type="button" id="show" class="btn-lg btn-danger bt">COURSES</button>
     </div>
 </div>
 
 <div class="dash" id="dashboard" style="padding-top: 2%;">
-  <div class="row" style="margin-left: 100px;margin-top: 10px;"> 
+    <div class="row" style="margin-left: 100px;margin-top: 10px;">
         <div class="col-lg-6" url-endpoint='{% url "api-data" %}'>
             <div class="container-fluid">
-            <canvas id="myChart" width="350" height="500"></canvas>
+                <canvas id="myChart" width="350" height="500"></canvas>
+            </div>
         </div>
-    </div>
-   
-    <div class="col-lg-6" url-endpoint='{% url "api-data" %}'>
-        <div class="container-fluid" >
-        <canvas id="myChart2" width="350" height="500"></canvas>
-        </div>
-</div>
 
-</div>
+        <div class="col-lg-6" url-endpoint='{% url "api-data" %}'>
+            <canvas id="myChart2" width="350" height="500"></canvas>
+        </div>
+
+    </div>
 </div>
 
 <div class="content" id="edit" style="text-align: center;">
     <h1 allign="justify" style="color:black; padding:2%; padding-left:22%;">QUIZZES AVAILABLE</h1>
-    
-        {% for quiz in quizs %}
-        <div class="container-fluid animate_animated animateslideInUp animate_slow">
-            <a class="card1" style="text-decoration:none;"href="{% url 'quizdetail' quiz.id %}">
+
+    {% for quiz in quizs %}
+    <div class="container-fluid animate_animated animateslideInUp animate_slow">
+        <a class="card1" style="text-decoration:none;" href="{% url 'quizdetail' quiz.id %}">
             <h3>{{quiz.quiz_subject}}-{{quiz.quiz_name}}</h3>
         </a>
-      </div>
-        {% endfor %}
-    
+    </div>
+    {% endfor %}
+
     <a href="{% url 'quizcreate' %}"><button class="btn-lg btn-outline-success">+ ADD QUIZ</button></a>
-  </div>
+</div>
 
 
-<div class="records" id="rec" >
-  {% for quiz in quizs %}
-    <div class="container-fluid" >
+<div class="records" id="rec">
+    {% for quiz in quizs %}
+    <div class="container-fluid">
         <a class="card1" href="{% url 'student-records' quiz.id%}" style="margin-left: 5%;">
-          <h3>{{quiz.quiz_subject}}</h3>
-          <p class="small">TEST DATE: {{quiz.quiz_end}}<br/>
-          EXAM TYPE: {{quiz.quiz_name}}<br/> 
-          <b><i>TIME DURATION: {{quiz.quiz_time}}mins</i></b></p>
+            <h3>{{quiz.quiz_subject}}</h3>
+            <p class="small">TEST DATE: {{quiz.quiz_end}}<br />
+                EXAM TYPE: {{quiz.quiz_name}}<br />
+                <b><i>TIME DURATION: {{quiz.quiz_time}}mins</i></b></p>
         </a>
     </div>
     {% endfor %}
@@ -192,4 +194,3 @@ window.location.replace("{% url 'student-home' %}");
 
 
 {% endblock %}
-

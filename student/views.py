@@ -47,18 +47,18 @@ class ChartStudentData(APIView):
 
         for result in resultsf:
             count.append(result.student_marks)
-        
-        maxMarks=max(count)
-        a.append(maxMarks)
-        res.append("MaxMarks")
+        if resultsf.exists():
+            maxMarks=max(count)
+            a.append(maxMarks)
+            res.append("MaxMarks")
 
         for result in results:
             res.append(str(result.student_email))
             a.append(str(result.student_marks))
-            
-        minMarks=min(count)
-        a.append(minMarks)
-        res.append("MinMarks")
+        if resultsf.exists():   
+            minMarks=min(count)
+            a.append(minMarks)
+            res.append("MinMarks")
             
         chartLabel = "Data"
         data ={
@@ -109,9 +109,11 @@ class QuizDeleteView(DeleteView):
     success_url=reverse_lazy('admin-dash') 
 
 class ChoiceCreateView(CreateView):
-    fields=('question','choice_text','ans')
     model=Choice
+    fields=['question','choice_text','ans']
     template_name='student/quizadd.html'
+   
+        
 
 
 @login_required
@@ -134,6 +136,8 @@ def quiz(request,quiz_id):
             return render(request,'student/student-result.html',{
             'result': -1,
             'total': 0,
+            'email':request.POST['email'],
+            'qid':quiz_id,
             })
         else:    
             return render(request,'student/quiz.html',{'quiz_id':quiz_id,'time':float(quiz.quiz_time)})    
