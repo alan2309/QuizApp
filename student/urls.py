@@ -17,5 +17,6 @@ urlpatterns = [
     path('create/<int:pk>/question/<int:p>/choice',views.ChoiceCreateView.as_view(),name='choiceadd'),
     path('api/data',views.ChartData.as_view(),name='api-data'),
     path('api/studentdata/<int:pk>/<str:p>',views.ChartStudentData.as_view(),name='api-studentdata'),
-
+    path('api/questionadddata/<int:pk>',views.QuestionAdd.as_view(),name='api-questionadddata'),
+    path('api/choiceadddata/<int:pk>/<int:p>',views.ChoiceAdd.as_view(),name='api-choiceadddata'),
 ]
