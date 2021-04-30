@@ -142,9 +142,11 @@
                     <canvas id="myChart2" width="400" height="400"></canvas>
                 </div>
             </div>
-            <a href="{% url 'student-home' %}">
-                <button class="submit btn btn-outline-danger">BACK TO HOME <PAGE></PAGE></button>
-            </a>
+            <form action="{% url 'student-home' %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <input type="text" name="mail" value="{{user.email}}" hidden>
+                <button type="submit" class="submit btn btn-outline-danger">BACK TO HOME</button>
+            </form>
         </div>
     </div>
 </div>
