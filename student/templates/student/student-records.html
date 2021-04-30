@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+<title>STUDENT RECORDS</title>
+<link rel="stylesheet" href="{% static 'CSS/records.css' %}">
+{% endblock %}
+
+{% block content %}
+<nav class="navbar navbar-light navbar-right" style="background-color: teal; padding:10px 30px;">
+    <a href="{% url 'quiz-home' %}"><button type="button" class="btn-lg btn-danger btn">BACK TO HOME</button></a>
+    <a href="{% url 'student-logout' %}"><button type="button" class="btn-lg btn-danger btn">SIGN OUT</button></a>
+  </nav>
+
+<table class="animate__animated animate__zoomIn animate__slow">
+                <thead>
+                  <tr>
+                    <th>TEST NAME</th>
+                    <th>STUDENT ID</th>
+                    <th>EXAM SCORE</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for record in records %}
+                  <tr>
+                    <td data-column="STUDENT NAME">{{record.quiz}}</td>
+                    <td data-column="STUDENT ID">{{record.student_sap}}</td>
+                    <td data-column="EXAM SCORE">{{record.student_marks}}/{{record.total_marks}}</td>
+                  </tr>
+{% endfor %}
+                </tbody>
+              </table>
+{% endblock %}

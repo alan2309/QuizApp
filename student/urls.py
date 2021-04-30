@@ -19,4 +19,5 @@ urlpatterns = [
     path('api/studentdata/<int:pk>/<str:p>',views.ChartStudentData.as_view(),name='api-studentdata'),
     path('api/questionadddata/<int:pk>',views.QuestionAdd.as_view(),name='api-questionadddata'),
     path('api/choiceadddata/<int:pk>/<int:p>',views.ChoiceAdd.as_view(),name='api-choiceadddata'),
+    path('myrecords/',views.UserRecords,name='student-records'), 
 ]
