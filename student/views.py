@@ -10,6 +10,7 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django import forms
 
 class ChartData(APIView):
     authentication_classes=[]
@@ -101,6 +102,8 @@ class QuestionCreateView(CreateView):
         x = txt.split(str(self.kwargs['pk']))
         context = super(QuestionCreateView, self).get_context_data(**kwargs)
         context['url'] = x[0]
+        id=Quiz.objects.filter(id=self.kwargs['pk'])
+        context['Lquiz'] = id
         return context
 
 class QuizDeleteView(DeleteView):
@@ -109,12 +112,16 @@ class QuizDeleteView(DeleteView):
     success_url=reverse_lazy('admin-dash') 
 
 class ChoiceCreateView(CreateView):
-    model=Choice
+    model = Choice
     fields=['question','choice_text','ans']
     template_name='student/quizadd.html'
-   
+    def get_context_data(self, **kwargs):
+        id=Question.objects.filter(id=self.kwargs['p'])
+        context = super(ChoiceCreateView, self).get_context_data(**kwargs)
+        context['Lquestion'] = id
         
-
+        return context
+    
 
 @login_required
 def dashboard(request):
