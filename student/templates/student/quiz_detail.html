@@ -27,7 +27,10 @@
 <div class="buttons">
     
     <a  href="{% url 'quizdelete' pk=quiz_detail.pk %}"> <button class="btn-sm btn-outline-danger bt">Delete Quiz</button></a>
-    <a  href="{% url 'questionadd' pk=quiz_detail.pk %}"> <button class="btn-sm btn-outline-success bt">Add Questions</button></a>
+
+
+    <a href="{% url 'questionadd' pk=quiz_detail.pk %}"><button class="btn-sm btn-outline-success bt">Add Questions</button></a>
+    
 </div>
   </div>
     <style>

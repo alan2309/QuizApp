@@ -69,6 +69,37 @@ class ChartStudentData(APIView):
              }
         return Response(data)
 
+class QuestionAdd(APIView):
+    authentication_classes=[]
+    permission_classes=[]
+    def get(self,request,*args,**kwargs):
+        res = []
+        quizid=Quiz.objects.filter(id=self.kwargs['pk'])
+        for quiz in quizid:
+            res.append(quiz.id)
+
+        data ={
+                     "quizapi":res,  
+             }
+        return Response(data)
+
+class ChoiceAdd(APIView):
+    authentication_classes=[]
+    permission_classes=[]
+    def get(self,request,*args,**kwargs):
+        a=[]
+        quizid=Quiz.objects.filter(id=self.kwargs['pk'])
+        questionid=Question.objects.filter(id=self.kwargs['p'])
+        for question in questionid:
+            a.append(question.id)
+        data ={
+                     "questionapi":a, 
+             }
+        return Response(data)
+
+
+
+
 class QuizListView(ListView):
     context_object_name='quizs'
     template_name='student/admin_dash.html'
@@ -100,10 +131,14 @@ class QuestionCreateView(CreateView):
     def get_context_data(self, **kwargs):
         txt=self.request.get_full_path()
         x = txt.split(str(self.kwargs['pk']))
+        
+        url1=self.request.get_full_path()
         context = super(QuestionCreateView, self).get_context_data(**kwargs)
         context['url'] = x[0]
         id=Quiz.objects.filter(id=self.kwargs['pk'])
         context['Lquiz'] = id
+        context['qid']=self.kwargs['pk']
+        context['url1']=url1
         return context
 
 class QuizDeleteView(DeleteView):
@@ -119,7 +154,8 @@ class ChoiceCreateView(CreateView):
         id=Question.objects.filter(id=self.kwargs['p'])
         context = super(ChoiceCreateView, self).get_context_data(**kwargs)
         context['Lquestion'] = id
-        
+        context['qid']=self.kwargs['pk']
+        context['questionid']=self.kwargs['p'] 
         return context
     
 
