@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {%block header %}
+
 {% endblock %}
 {% block content%}
 {% load crispy_forms_tags %}
@@ -20,11 +21,27 @@
     <form method="post">
         {% csrf_token %}
         {{form|crispy}}
-    {% if '/main/quizcreate/' == request.path %}
+ 
+  {% if '/main/quizcreate/' == request.path %}
     <p>Enter date in yyyy-mm-dd **</p>
     {% endif %}
-  <hr style="color: white;">
+    <hr style="color: white;">
         <input type="submit" class="btn-lg btn-success" value="ADD">
     </form>
+    
   </div>
+ 
+  <script>
+     {% for question in Lquestion %}
+    document.getElementById("id_question").value = {{ question.id }}
+    document.getElementById("id_question").readOnly=true;
+    document.getElementById("id_question").defaultValue={{ question.id }};
+    {% endfor %}
+    {% for quiz in Lquiz %}
+    document.getElementById("id_quiz").value = {{ quiz.id }};
+    document.getElementById("id_quiz").readOnly=true;
+    document.getElementById("id_quiz").defaultValue={{ quiz.id }};
+    {% endfor %}
+    </script>
+  
 {% endblock %}
