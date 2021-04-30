@@ -125,8 +125,14 @@ class ChoiceCreateView(CreateView):
 
 @login_required
 def dashboard(request):
-    open_quizzes = Quiz.objects.filter(quiz_end__gte = datetime.now().date())
-    closed_quizzes  = Quiz.objects.filter(quiz_end__lt = datetime.now().date())
+    open_quizzes=[]
+    closed_quizzes=[]
+    quizzes = Quiz.objects.all()
+    for quiz in quizzes:
+        if quiz.result_set.filter(student_email = request.POST['mail']).exists() or quiz.quiz_end < datetime.now().date():
+            closed_quizzes.append(quiz)
+        else:    
+            open_quizzes.append(quiz)
     return render(request,'student/dashboard.html',{'open_quizzes':open_quizzes,'closed_quizzes':closed_quizzes})
 
 def quiz(request,quiz_id):

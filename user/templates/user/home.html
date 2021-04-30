@@ -12,10 +12,27 @@
             <div class="column animate__animated animate__slideInLeft animate__slow" id="content" >
                 <h1>ONLINE QUIZ</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, quis? Voluptatibus error, tempora nesciunt totam odio nemo nobis sunt minima, nam quisquam non quibusdam aspernatur quidem esse? Amet, delectus ipsum?</p>
+            {% if user.email %}
+            {% if user.is_staff %}
+            <h1>Choose:</h1>
+            <a href="{% url 'admin-dash' %}"><button type="button"class="animate__animated animate__pulse animate__slower btn-lg btn-outline-success buttons">TEACHER</button></a>
+           {% else %}
+           <h1>Enter:</h1>
+            {% endif %}
+            {% else %}
             <h1>ARE YOU A</h1>
             <a href="{% url 'admin-dash' %}"><button type="button"class="animate__animated animate__pulse animate__slower btn-lg btn-outline-success buttons">TEACHER</button></a>
+            {% endif %}
+            {% if user.email %}
+            <form action="{% url 'student-home' %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <input type="text" name="mail" value="{{user.email}}" hidden>
+                <button type="submit" class="animate__animated animate__pulse animate__slower btn-lg btn-outline-success buttons">STUDENT</button>
+            </form>
+            {% else %}
             <a href="{% url 'student-home' %}"><button type="button"class="animate__animated animate__pulse animate__slower btn-lg btn-outline-success buttons">STUDENT</button></a>
-            </div>
+           {% endif %}
+        </div>
             <div class="column" id="image">
                 <section class="image">
                     <img src="https://icon-library.com/images/exam-icon-png/exam-icon-png-24.jpg" height="50%" alt="online exam vector"/>
