@@ -229,3 +229,7 @@ def records(request,quiz_id):
     quiz = Quiz.objects.get(id=quiz_id)
     records = quiz.result_set.all()
     return render(request,'student/records.html',{'quiz_id':quiz_id,'records':records})    
+
+def UserRecords(request):
+    record_list = Result.objects.filter(student_email = request.POST['mail'])
+    return render(request,'student/student-records.html',{'records':record_list})    
