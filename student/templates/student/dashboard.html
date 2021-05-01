@@ -14,11 +14,11 @@
     <a href="{% url 'student-logout' %}"><button type="button" class="btn-lg btn-danger btn" id="btn">SIGN OUT</button></a>
   </nav>
 <h1 class="animate__animated animate__fadeInUp animate__slow" style="margin: 30px 50px 0px; color:teal;"><b>ACTIVE QUIZZES</b></h1>
-  <div class="row animate__animated animate__fadeInUp animate__slow " style="padding: 0 1%;">
+<div class="row animate__animated animate__fadeInUp animate__slow " style="padding: 0 1%;">
     {% if open_quizzes %}
     {% for quiz in open_quizzes%}
     <div class="col-lg-4 col-md-6 col-sm-12 grid-item" id="card" style="margin: 20px 0;padding: 1.5%;">
-              <div class="card" >
+      <div class="card" >
                 {% if quiz.quiz_subject == "WEB PROGRAMMING" %}
                         <img class="card-img" src="https://miro.medium.com/max/2400/1*pE2fOVDikEUwiQJlh4ggzg.jpeg" />
                         {% elif quiz.quiz_subject == "PYTHON" %}
@@ -35,12 +35,9 @@
                 <div class="card-content">
                   <h1 class="card-header">{{quiz.quiz_subject}}</h1>
                   <p>EXAM TYPE: {{quiz.quiz_name}}<br/>QUIZ CLOSES ON: <b>{{quiz.quiz_end}}</b><br>DURATION: <b>{{quiz.quiz_time}}mins</b></p>
-                  <form action="{% url 'enter-quiz' quiz.id%}" method="post">
-                    {% csrf_token %}
-                    <input type="text" name="status" id="status" value="open" hidden>
-                    <input type="email" name="email" id="email" value="{{user.email}}" hidden>
-                    <button type="submit" class="card-btn" >TAKE A QUIZ<span>&rarr;</span></button>
-                </form>
+                
+                   <a href="{% url 'enter-quiz' quiz.id%}"> <button type="submit" class="card-btn" >TAKE A QUIZ<span>&rarr;</span></button></a>
+               
                 </div>
               </div>
             </div>
@@ -50,10 +47,10 @@
             {% endif %}
           </div>
           <h1 class="animate__animated animate__fadeInUp animate__slow"style="margin: 0px 50px 0px; color:teal"><b>COMPLETED QUIZZES</b></h1>
-          <div class="row animate__animated animate__fadeInUp animate__slow" style="padding: 0 1%;">
+          <div class="row animate__animated animate__fadeInUp animate__slow " style="padding: 0 1%;">
             {% for quiz in closed_quizzes%}
-            <div class="col-lg-4 col-md-6 col-sm-12 "  style="margin: 20px 0;">
-                      <div class="card grid-item" id="card" >
+            <div class="col-lg-4 col-md-6 col-sm-12 grid-item" id="card" style="margin: 20px 0;padding: 1.5%;">
+              <div class="card" >
                         {% if quiz.quiz_subject == "WEB PROGRAMMING" %}
                         <img class="card-img" src="https://miro.medium.com/max/2400/1*pE2fOVDikEUwiQJlh4ggzg.jpeg" />
                         {% elif quiz.quiz_subject == "PYTHON" %}
@@ -70,12 +67,8 @@
                         <div class="card-content">
                           <h1 class="card-header">{{quiz.quiz_subject}}</h1>
                           <p>EXAM TYPE: {{quiz.quiz_name}}<br/>QUIZ CLOSED ON: <b>{{quiz.quiz_end}}</b><br>DURATION: <b>{{quiz.quiz_time}}mins</b></p>
-                          <form action="{% url 'enter-quiz' quiz.id%}" method="post">
-                            {% csrf_token %}
-                            <input type="text" name="status" id="status" value="closed" hidden>
-                            <input type="email" name="email" id="email" value="{{user.email}}" hidden>
-                            <button type="submit" class="card-btn" >VIEW RESULTS<span>&rarr;</span></button>
-                        </form>
+                           <a href="{% url 'enter-quiz' quiz.id%}"><button type="submit" class="card-btn" >VIEW RESULTS<span>&rarr;</span></button></a> 
+                     
                         </div>
                       </div>
                     </div>

@@ -25,22 +25,13 @@
             {% endif %}
             {% if user.email %}
             {% if not user.is_staff%}
-            <form action="{% url 'student-home' %}" method="post" style="display: inline;">
-                {% csrf_token %}
-                <input type="text" name="mail" value="{{user.email}}" hidden>
-                <button type="submit" class="animate__animated animate__pulse animate__slower btn-lg btn-outline-success buttons">DASHBOARD</button>
-            </form>
-            <form action="{% url 'student-records' %}" method="post" style="display: inline;">
-                {% csrf_token %}
-                <input type="text" name="mail" value="{{user.email}}" hidden>
-                <button type="submit" class="animate__animated animate__pulse animate__slower btn-lg btn-outline-success buttons">RESULTS</button>
-            </form>
+               <a href="{% url 'student-home' %}"><button type="submit" class="animate__animated animate__pulse animate__slower btn-lg btn-outline-success buttons">DASHBOARD</button></a> 
+          
+               <a href="{% url 'student-records' %}"><button type="submit" class="animate__animated animate__pulse animate__slower btn-lg btn-outline-success buttons">RESULTS</button></a> 
+           
             {% else %}
-            <form action="{% url 'student-home' %}" method="post" style="display: inline;">
-                {% csrf_token %}
-                <input type="text" name="mail" value="{{user.email}}" hidden>
-                <button type="submit" class="animate__animated animate__pulse animate__slower btn-lg btn-outline-success buttons">STUDENT</button>
-            </form>
+              <a href="{% url 'student-home' %}"> <button type="submit" class="animate__animated animate__pulse animate__slower btn-lg btn-outline-success buttons">STUDENT</button></a> 
+           
             {% endif %}
             {% else %}
             <a href="{% url 'student-home' %}"><button type="button"class="animate__animated animate__pulse animate__slower btn-lg btn-outline-success buttons">STUDENT</button></a>
