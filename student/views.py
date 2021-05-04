@@ -165,7 +165,7 @@ def dashboard(request):
     closed_quizzes=[]
     quizzes = Quiz.objects.all()
     for quiz in quizzes:
-        if quiz.result_set.filter(student_email = request.POST['mail']).exists() or quiz.quiz_end < datetime.now().date():
+        if quiz.result_set.filter(student_email = request.user.email).exists() or quiz.quiz_end < datetime.now().date():
             closed_quizzes.append(quiz)
         else:    
             open_quizzes.append(quiz)
@@ -173,19 +173,19 @@ def dashboard(request):
 
 def quiz(request,quiz_id):
     quiz = Quiz.objects.get(id = quiz_id)
-    if quiz.result_set.filter(student_email = request.POST['email']).exists():
+    if quiz.result_set.filter(student_email = request.user.email).exists():
         return render(request,'student/student-result.html',{
-            'email':request.POST['email'],
+            'email':request.user.email,
             'qid':quiz_id,
-            'result': quiz.result_set.get(student_email = request.POST['email']).student_marks,
-            'total': quiz.result_set.get(student_email = request.POST['email']).total_marks,
+            'result': quiz.result_set.get(student_email = request.user.email).student_marks,
+            'total': quiz.result_set.get(student_email = request.user.email).total_marks,
             })
     else: 
-        if request.POST['status'] == "closed":
+        if (quiz.result_set.filter(student_email = request.user.email).exists() or quiz.quiz_end < datetime.now().date()):
             return render(request,'student/student-result.html',{
             'result': -1,
             'total': 0,
-            'email':request.POST['email'],
+            'email':request.user.email,
             'qid':quiz_id,
             })
         else:    
@@ -219,10 +219,10 @@ def results(request,quiz_id):
         except:
             pass
    
-    x=quiz.result_set.create(student_email=request.POST['email'],student_marks=str(results),student_name=request.POST['name'],student_sap=request.POST['sap'],quiz=quiz_id,total_marks=str(total))
+    x=quiz.result_set.create(student_email=request.user.email,student_marks=str(results),student_name=request.POST['name'],student_sap=request.POST['sap'],quiz=quiz_id,total_marks=str(total))
     x.save()
 
-    return render(request,'student/results.html',{'result':results,'sap':request.POST['sap'],'total':total,'qid':quiz_id,'email':request.POST['email']})
+    return render(request,'student/results.html',{'result':results,'sap':request.POST['sap'],'total':total,'qid':quiz_id,'email':request.user.email})
 
 
 def records(request,quiz_id):
@@ -231,5 +231,5 @@ def records(request,quiz_id):
     return render(request,'student/records.html',{'quiz_id':quiz_id,'records':records})    
 
 def UserRecords(request):
-    record_list = Result.objects.filter(student_email = request.POST['mail'])
+    record_list = Result.objects.filter(student_email = request.user.email)
     return render(request,'student/student-records.html',{'records':record_list})    

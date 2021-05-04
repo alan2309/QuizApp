@@ -14,7 +14,6 @@
         <form action="{% url 'result-quiz' quiz_id %}" name="myForm" method="POST">
           {% csrf_token %}
           <input type="hidden" value="{{sap}}" name="sap"> 
-          <input type="hidden" value="{{user.email}}" name="email"> 
           <input type="hidden" value="{{user.first_name}}" name="name"> 
           {% for question in questions_list %}
             <div class="card">
