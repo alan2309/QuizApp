@@ -18,7 +18,7 @@ def login(request):
             if User.objects.get(username=email).is_staff ==True:
                 return redirect('admin-dash')
             else :
-                return redirect('quiz-home')    #changed
+                return redirect('student-home')    
         else:
             messages.info(request,'**USER NOT FOUND**')  
             return redirect('quiz-login')
