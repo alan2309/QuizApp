@@ -1,3 +1,3 @@
 # QuizApp
 ## Online Examination App
-To create a teacher's acc, use code ABCD
+To create a teacher's account, use code ABCD
